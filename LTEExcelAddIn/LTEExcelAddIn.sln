@@ -1,0 +1,41 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LTEExcelAddIn", "LTEExcelAddIn\LTEExcelAddIn.csproj", "{257E9E88-8190-497B-900C-EB955084145E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UDFs", "UDFs\UDFs.csproj", "{B98A2095-2663-4455-B580-27C7BAEA3ABD}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		CD_ROM|Any CPU = CD_ROM|Any CPU
+		Debug|Any CPU = Debug|Any CPU
+		DVD-5|Any CPU = DVD-5|Any CPU
+		Release|Any CPU = Release|Any CPU
+		SingleImage|Any CPU = SingleImage|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{257E9E88-8190-497B-900C-EB955084145E}.CD_ROM|Any CPU.ActiveCfg = Release|Any CPU
+		{257E9E88-8190-497B-900C-EB955084145E}.CD_ROM|Any CPU.Build.0 = Release|Any CPU
+		{257E9E88-8190-497B-900C-EB955084145E}.Debug|Any CPU.ActiveCfg = Release|Any CPU
+		{257E9E88-8190-497B-900C-EB955084145E}.Debug|Any CPU.Build.0 = Release|Any CPU
+		{257E9E88-8190-497B-900C-EB955084145E}.DVD-5|Any CPU.ActiveCfg = Debug|Any CPU
+		{257E9E88-8190-497B-900C-EB955084145E}.DVD-5|Any CPU.Build.0 = Debug|Any CPU
+		{257E9E88-8190-497B-900C-EB955084145E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{257E9E88-8190-497B-900C-EB955084145E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{257E9E88-8190-497B-900C-EB955084145E}.SingleImage|Any CPU.ActiveCfg = Release|Any CPU
+		{257E9E88-8190-497B-900C-EB955084145E}.SingleImage|Any CPU.Build.0 = Release|Any CPU
+		{B98A2095-2663-4455-B580-27C7BAEA3ABD}.CD_ROM|Any CPU.ActiveCfg = Release|Any CPU
+		{B98A2095-2663-4455-B580-27C7BAEA3ABD}.CD_ROM|Any CPU.Build.0 = Release|Any CPU
+		{B98A2095-2663-4455-B580-27C7BAEA3ABD}.Debug|Any CPU.ActiveCfg = Release|Any CPU
+		{B98A2095-2663-4455-B580-27C7BAEA3ABD}.Debug|Any CPU.Build.0 = Release|Any CPU
+		{B98A2095-2663-4455-B580-27C7BAEA3ABD}.DVD-5|Any CPU.ActiveCfg = Debug|Any CPU
+		{B98A2095-2663-4455-B580-27C7BAEA3ABD}.DVD-5|Any CPU.Build.0 = Debug|Any CPU
+		{B98A2095-2663-4455-B580-27C7BAEA3ABD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B98A2095-2663-4455-B580-27C7BAEA3ABD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B98A2095-2663-4455-B580-27C7BAEA3ABD}.SingleImage|Any CPU.ActiveCfg = Release|Any CPU
+		{B98A2095-2663-4455-B580-27C7BAEA3ABD}.SingleImage|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

@@ -1,0 +1,36 @@
+﻿<?xml version='1.0' encoding='utf-8'?>
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="LTEExcelAddIn.Properties" GeneratedClassName="Settings">
+  <Profiles />
+  <Settings>
+    <Setting Name="Server" Type="System.String" Scope="User">
+      <Value Profile="(Default)">192.168.1.4</Value>
+    </Setting>
+    <Setting Name="Database" Type="System.String" Scope="User">
+      <Value Profile="(Default)">lte_energo</Value>
+    </Setting>
+    <Setting Name="User" Type="System.String" Scope="User">
+      <Value Profile="(Default)">wges</Value>
+    </Setting>
+    <Setting Name="Password" Type="System.String" Scope="User">
+      <Value Profile="(Default)">1111</Value>
+    </Setting>
+    <Setting Name="Character" Type="System.String" Scope="User">
+      <Value Profile="(Default)">utf8</Value>
+    </Setting>
+    <Setting Name="TitleName" Type="System.String" Scope="User">
+      <Value Profile="(Default)">Львівтеплоенерго</Value>
+    </Setting>
+    <Setting Name="Query" Type="System.String" Scope="User">
+      <Value Profile="(Default)">SELECT
+    *
+FROM
+    motors_lte;</Value>
+    </Setting>
+    <Setting Name="SizeSQLQueryForm" Type="System.Drawing.Size" Scope="User">
+      <Value Profile="(Default)">450, 350</Value>
+    </Setting>
+    <Setting Name="LocationSQLQueryForm" Type="System.Drawing.Point" Scope="User">
+      <Value Profile="(Default)">100, 100</Value>
+    </Setting>
+  </Settings>
+</SettingsFile>

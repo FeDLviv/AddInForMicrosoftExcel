@@ -1,0 +1,117 @@
+﻿<UserControl 
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    Width="500" Height="550">
+    <UserControl.Resources>
+        <VisualBrush x:Key="MyFilterBrush" AlignmentX="Left" Stretch="None">
+            <VisualBrush.Visual>
+                <Grid Width="150">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="1*" />
+                        <ColumnDefinition Width="Auto" />
+                    </Grid.ColumnDefinitions>
+                    <Label Grid.Column="0" FontStyle="Italic" Foreground="Gray" Content="Пошук..." />
+                    <Image Grid.Column="1" Source="pack://application:,,,/LTEExcelAddIn;component/images/search.png" />
+                </Grid>
+            </VisualBrush.Visual>
+        </VisualBrush>
+    </UserControl.Resources>
+    <DockPanel>
+        <GroupBox DockPanel.Dock="Top" Margin="5,7,5,10" Header="Фільтр:">
+            <GroupBox.BorderBrush>
+                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                    <GradientStop Color="Black" Offset="0"/>
+                    <GradientStop Color="#FF2B2828" Offset="1"/>
+                </LinearGradientBrush>
+            </GroupBox.BorderBrush>
+            <StackPanel>
+                <TextBox Width="155" HorizontalAlignment="Left" Margin="5" Text="{Binding Path=FilterPump, UpdateSourceTrigger=PropertyChanged}">
+                    <TextBox.Style>
+                        <Style TargetType="TextBox">
+                            <Style.Triggers>
+                                <Trigger Property="Text" Value="">
+                                    <Setter Property="Background" Value="{StaticResource MyFilterBrush}" />
+                                </Trigger>
+                            </Style.Triggers>
+                        </Style>
+                    </TextBox.Style>
+                </TextBox>
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="1*" />
+                    </Grid.ColumnDefinitions>
+                    <RadioButton Grid.Row="0" Grid.Column="0" Margin="2" Content ="по типу насоса" IsChecked="{Binding Path=IsFilterByPumpName}" />
+                    <RadioButton Grid.Row="1" Grid.Column="0" Margin="2" Content ="по артикулу насоса" IsChecked="{Binding Path=IsFilterByPumpArtikul}" />
+                    <RadioButton Grid.Row="2" Grid.Column="0" Margin="2" Content ="по артикулу ротора" IsChecked="{Binding Path=IsFilterByRotorArtikul}" />
+                    <RadioButton Grid.Row="3" Grid.Column="0" Margin="2" Content ="по артикулу крильчатки" IsChecked="{Binding Path=IsFilterByWheelArtikul}" />
+                    <Image Grid.Row="0" Grid.Column="1" Grid.RowSpan="4" HorizontalAlignment="Right" Margin="5" Source="pack://application:,,,/LTEExcelAddIn;component/images/wilo.png" Width="64" />
+                </Grid>
+            </StackPanel>
+        </GroupBox>
+        <TextBlock DockPanel.Dock="Bottom" Margin="5" FontStyle="Italic">
+            <Run Text="Всього:" />
+            <Run Text="{Binding ElementName=list, Path=Items.Count, Mode=OneWay}" />
+            <Run Text="шт." />
+        </TextBlock>
+        <ListBox Name="list" DockPanel.Dock="Left" MinWidth="450" HorizontalContentAlignment="Stretch" ItemsSource="{Binding PumpsList}" >
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <Border BorderThickness="2" BorderBrush="Green" CornerRadius="4" Padding="5" Margin="2" >
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="1*" />
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto" />
+                                <ColumnDefinition Width="Auto" />
+                                <ColumnDefinition Width="Auto" />
+                            </Grid.ColumnDefinitions>
+                            <TextBlock Grid.Row="0" Grid.Column="0" VerticalAlignment="Center"  HorizontalAlignment="Left" FontStyle="Italic" Text="насос:" />
+                            <TextBlock Grid.Row="0" Grid.Column="1" VerticalAlignment="Center"  HorizontalAlignment="Center" Text="{Binding Path=Artikul}" />
+                            <TextBlock Grid.Row="0" Grid.Column="2" VerticalAlignment="Center"  HorizontalAlignment="Left" Margin="5" FontWeight="Bold" Text="{Binding Path=Name}" FontFamily="Bodoni MT Black" FontSize="16" />
+                            <TextBlock Grid.Row="1" Grid.Column="0" VerticalAlignment="Center"  HorizontalAlignment="Left" FontStyle="Italic" Text="ротор:" />
+                            <TextBlock Grid.Row="1" Grid.Column="1" VerticalAlignment="Center"  HorizontalAlignment="Center" Text="{Binding Path=ArtikulRotor, TargetNullValue=-}" />
+                            <TextBlock Grid.Row="1" Grid.Column="2" VerticalAlignment="Center"  HorizontalAlignment="Left" Margin="3" FontWeight="Bold" Text="{Binding Path=NameRotor, TargetNullValue=-}" />
+                            <TextBlock Grid.Row="2" Grid.Column="0" VerticalAlignment="Center"  HorizontalAlignment="Left" FontStyle="Italic" Text="крильчатка:  " />
+                            <TextBlock Grid.Row="2" Grid.Column="1" VerticalAlignment="Center"  HorizontalAlignment="Center" Text="{Binding Path=ArtikulWheel, TargetNullValue=-}" />
+                            <TextBlock Grid.Row="2" Grid.Column="2" VerticalAlignment="Center"  HorizontalAlignment="Left" Margin="3" FontWeight="Bold" Text="{Binding Path=NameWheel, TargetNullValue=-}" />
+                            <Expander Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="2" Header="Додатково:">
+                                <Grid>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="1*" />
+                                        <RowDefinition Height="1*" />
+                                        <RowDefinition Height="1*" />
+                                        <RowDefinition Height="1*" />
+                                    </Grid.RowDefinitions>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="Auto" />
+                                        <ColumnDefinition Width="1*" />
+                                    </Grid.ColumnDefinitions>
+                                    <TextBlock Grid.Row="0" Grid.Column="0" FontStyle="Italic" Text="старий артикул:  " />
+                                    <TextBlock Grid.Row="0" Grid.Column="1" FontWeight="Bold" Text="{Binding Path=OldArtikul, TargetNullValue=-}" />
+                                    <TextBlock Grid.Row="1" Grid.Column="0" FontStyle="Italic" Text="монтажна висота:  " />
+                                    <TextBlock Grid.Row="1" Grid.Column="1" FontWeight="Bold" Text="{Binding Path=Height, TargetNullValue=-}" />
+                                    <TextBlock Grid.Row="2" Grid.Column="0" FontStyle="Italic" Text="різьба/фланець:" />
+                                    <TextBlock Grid.Row="2" Grid.Column="1" FontWeight="Bold" Text="{Binding Path=Diametr, TargetNullValue=-}" />
+                                    <TextBlock Grid.Row="3" Grid.Column="0" FontStyle="Italic" Text="конденсатор:" />
+                                    <TextBlock Grid.Row="3" Grid.Column="1" FontWeight="Bold" Text="{Binding Capacitor, TargetNullValue=-}" />
+                                </Grid>
+                            </Expander>
+                            <TextBlock Grid.Row="3" Grid.Column="2" VerticalAlignment="Top"  HorizontalAlignment="Left" Margin="3" FontWeight="Bold" Text="{Binding Path=Quantity, StringFormat ={}{0} шт.}" FontFamily="Arial Black" />
+                        </Grid>
+                    </Border>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
+    </DockPanel>
+</UserControl>
