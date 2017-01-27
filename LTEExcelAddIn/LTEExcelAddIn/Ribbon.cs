@@ -81,6 +81,8 @@ SELECT
     objects.category AS 'категорія надійності'
 FROM 
     objects
+WHERE
+    type <> 'склад'
 ORDER BY
     FIELD(organization, 'ЛТЕ', 'решта', 'ОСББ', 'освіта', 'ЖЕК', 'ЛОЕ') DESC,
     organization,
@@ -101,6 +103,8 @@ SELECT
     COUNT(*) AS ""кількість об'єктів""
 FROM 
     objects
+WHERE
+    type <> 'склад'
 GROUP BY
     organization
 ORDER BY
@@ -112,7 +116,8 @@ ORDER BY
         private void buttonMotorsInObjects_Click(object sender, RibbonControlEventArgs e)
         {
             new LoadForm(@"
-SELECT 
+SELECT
+    motors_lte.idMotorsLTE AS 'ID', 
     objects.region AS 'район', 
     objects.type AS 'тип', 
     objects.address AS 'адреса', 
@@ -127,9 +132,10 @@ SELECT
     END AS 'кількість фаз', 
     motors_lte.speed AS 'r/min', 
     motors_lte.inventory AS 'інвентарний номер', 
-    motors_lte.bearing1 AS 'підшипник №1', 
-    motors_lte.bearing2 AS 'підшипник №2', 
-    DATE_FORMAT(motors_lte.lastRepair, '%Y р.') AS 'останній ремонт', 
+    motors_lte.bearing1 AS 'підшипник (перед/низ)', 
+    motors_lte.bearing2 AS 'підшипник (зад/верх)',
+    (SELECT DATE_FORMAT(MAX(dateRepair), '%m-%Y р.') FROM motorRepairs WHERE motorRepairs.idMotorsLTE = motors_lte.idMotorsLTE) AS 'останній ремонт', 
+    (SELECT typeRepair FROM motorRepairs WHERE motorRepairs.idMotorsLTE = motors_lte.idMotorsLTE ORDER BY dateRepair DESC LIMIT 1) AS 'тип ремонта',
     DATE_FORMAT(motors_lte.dateChange, '%d.%m.%Y %T') AS 'дата зміни інформації'
 FROM 
     objects INNER JOIN motors_lte USING (idObject) 
@@ -199,7 +205,9 @@ SELECT
     objects.organization AS 'договір з', 
     FORMAT(SUM(motors_lte.power), 3) AS 'потужність' 
 FROM 
-    objects INNER JOIN motors_lte USING(idObject) 
+    objects INNER JOIN motors_lte USING(idObject)
+WHERE
+    objects.type <> 'склад' 
 GROUP BY 
     objects.type, 
     objects.address 
@@ -235,10 +243,41 @@ FROM
             ", buttonDecommissionedMotors.Label).ShowDialog();
         }
 
+        private void buttonMotorsHistory_Click(object sender, RibbonControlEventArgs e)
+        {
+            new LoadForm(@"
+SELECT 
+    idMotorsLTE AS 'ID двигуна',
+    CONCAT_WS(' ', type, address) AS ""об'єкт"",  
+    DATE_FORMAT(dateTrash, '%d.%m.%Y') AS 'знятий'
+FROM 
+    motors_lte_history
+ORDER BY
+    idMotorsLTE,
+    dateTrash;
+            ", buttonMotorsHistory.Label).ShowDialog();
+        }
+
+        private void buttonMotorRepairs_Click(object sender, RibbonControlEventArgs e)
+        {
+            new LoadForm(@"
+SELECT 
+    idMotorsLTE AS 'ID двигуна',
+    typeRepair AS 'тип ремонта',  
+    DATE_FORMAT(dateRepair, '%d.%m.%Y') AS 'дата ремонта'
+FROM 
+    motorRepairs
+ORDER BY
+    idMotorsLTE,
+    dateRepair;
+            ", buttonMotorRepairs.Label).ShowDialog();
+        }
+
         private void buttonMiniWiloMotors_Click(object sender, RibbonControlEventArgs e)
         {
             new LoadForm(@"
 SELECT 
+    motors_lte.idMotorsLTE AS 'ID', 
     objects.region AS 'район',   
     objects.type AS 'тип',   
     objects.address AS 'адреса',   
@@ -252,7 +291,8 @@ SELECT
     END AS 'кількість фаз',  
     motors_lte.idWiloArt AS 'артикул',   
     motors_lte.inventory AS 'інвентарний номер',   
-    motors_lte.lastRepair AS 'останній ремонт',   
+    (SELECT DATE_FORMAT(MAX(dateRepair), '%m-%Y р.') FROM motorRepairs WHERE motorRepairs.idMotorsLTE = motors_lte.idMotorsLTE) AS 'останній ремонт', 
+    (SELECT typeRepair FROM motorRepairs WHERE motorRepairs.idMotorsLTE = motors_lte.idMotorsLTE ORDER BY dateRepair DESC LIMIT 1) AS 'тип ремонта',
     DATE_FORMAT(motors_lte.dateChange, '%d.%m.%Y %T') AS 'дата зміни інформації'
 FROM 
     objects INNER JOIN motors_lte USING (idObject) 
@@ -389,7 +429,7 @@ SELECT
 FROM
     objects LEFT OUTER JOIN meters_lte ON objects.idObject = meters_lte.idObject
 WHERE
-    meters_lte.idObject IS NULL
+    meters_lte.idObject IS NULL AND objects.type <> 'склад'
 ORDER BY
     region,
     FIELD(type, 'гуртожиток', 'майстерня', 'ТК','ІТП', 'ЦТП', 'котельня') DESC,

@@ -37,6 +37,8 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Ribbon));
             this.tab = this.Factory.CreateRibbonTab();
             this.groupSQL = this.Factory.CreateRibbonGroup();
+            this.groupFunctions = this.Factory.CreateRibbonGroup();
+            this.groupOther = this.Factory.CreateRibbonGroup();
             this.buttonSQLSettings = this.Factory.CreateRibbonButton();
             this.buttonSQLQuery = this.Factory.CreateRibbonButton();
             this.menuContracts = this.Factory.CreateRibbonMenu();
@@ -48,6 +50,7 @@
             this.buttonGroupByPower = this.Factory.CreateRibbonButton();
             this.buttonSumPowerOfObjects = this.Factory.CreateRibbonButton();
             this.buttonDecommissionedMotors = this.Factory.CreateRibbonButton();
+            this.buttonMotorsHistory = this.Factory.CreateRibbonButton();
             this.menuWilo = this.Factory.CreateRibbonMenu();
             this.buttonMiniWiloMotors = this.Factory.CreateRibbonButton();
             this.buttonGroupByMiniWiloMotors = this.Factory.CreateRibbonButton();
@@ -72,12 +75,11 @@
             this.menuEmployees = this.Factory.CreateRibbonMenu();
             this.buttonEmployeesES = this.Factory.CreateRibbonButton();
             this.buttonWilo = this.Factory.CreateRibbonButton();
-            this.groupFunctions = this.Factory.CreateRibbonGroup();
             this.menuHomeFunctions = this.Factory.CreateRibbonMenu();
             this.buttonElectricPowerDoubleZones = this.Factory.CreateRibbonButton();
             this.buttonGas = this.Factory.CreateRibbonButton();
-            this.groupOther = this.Factory.CreateRibbonGroup();
             this.buttonCalculation = this.Factory.CreateRibbonButton();
+            this.buttonMotorRepairs = this.Factory.CreateRibbonButton();
             this.tab.SuspendLayout();
             this.groupSQL.SuspendLayout();
             this.groupFunctions.SuspendLayout();
@@ -107,6 +109,18 @@
             this.groupSQL.Items.Add(this.buttonWilo);
             this.groupSQL.Label = "База даних";
             this.groupSQL.Name = "groupSQL";
+            // 
+            // groupFunctions
+            // 
+            this.groupFunctions.Items.Add(this.menuHomeFunctions);
+            this.groupFunctions.Label = "Формули";
+            this.groupFunctions.Name = "groupFunctions";
+            // 
+            // groupOther
+            // 
+            this.groupOther.Items.Add(this.buttonCalculation);
+            this.groupOther.Label = "Решта";
+            this.groupOther.Name = "groupOther";
             // 
             // buttonSQLSettings
             // 
@@ -169,6 +183,8 @@
             this.menuMotors.Items.Add(this.buttonGroupByPower);
             this.menuMotors.Items.Add(this.buttonSumPowerOfObjects);
             this.menuMotors.Items.Add(this.buttonDecommissionedMotors);
+            this.menuMotors.Items.Add(this.buttonMotorsHistory);
+            this.menuMotors.Items.Add(this.buttonMotorRepairs);
             this.menuMotors.Label = "Двигуни";
             this.menuMotors.Name = "menuMotors";
             this.menuMotors.ScreenTip = "Двигуни";
@@ -193,7 +209,7 @@
             this.buttonGroupByMiniMotors.ScreenTip = "Згруповані двигуни з мокрим ротором";
             this.buttonGroupByMiniMotors.ShowImage = true;
             this.buttonGroupByMiniMotors.SuperTip = "Запит до БД, який вибирає двигуни  з мокрим ротором та групує їх по типу ЗАПИТ ПО" +
-    "ТРІБНО ПОНОВЛЮВАТИ (24.12.2016)";
+                "ТРІБНО ПОНОВЛЮВАТИ (24.12.2016)";
             this.buttonGroupByMiniMotors.Click += new Microsoft.Office.Tools.Ribbon.RibbonControlEventHandler(this.buttonGroupByMiniMotors_Click);
             // 
             // buttonGroupByPower
@@ -204,7 +220,7 @@
             this.buttonGroupByPower.ScreenTip = "Двигуни згруповані по потужності";
             this.buttonGroupByPower.ShowImage = true;
             this.buttonGroupByPower.SuperTip = "Запит до БД, який групує двигуни по потужності та підраховує їх кількість (для пі" +
-    "драхунку КРС)";
+                "драхунку КРС)";
             this.buttonGroupByPower.Click += new Microsoft.Office.Tools.Ribbon.RibbonControlEventHandler(this.buttonGroupByPower_Click);
             // 
             // buttonSumPowerOfObjects
@@ -215,7 +231,7 @@
             this.buttonSumPowerOfObjects.ScreenTip = "Сумарна потужність двигунів на об\'єктах";
             this.buttonSumPowerOfObjects.ShowImage = true;
             this.buttonSumPowerOfObjects.SuperTip = "Запит до БД, який підраховує сумарну потужність двигунів на об\'єктах, та сортує с" +
-    "умарну потужність об\'єктів по спаданню";
+                "умарну потужність об\'єктів по спаданню";
             this.buttonSumPowerOfObjects.Click += new Microsoft.Office.Tools.Ribbon.RibbonControlEventHandler(this.buttonSumPowerOfObjects_Click);
             // 
             // buttonDecommissionedMotors
@@ -227,6 +243,17 @@
             this.buttonDecommissionedMotors.ShowImage = true;
             this.buttonDecommissionedMotors.SuperTip = "Запит до БД, який показує списані двигуни";
             this.buttonDecommissionedMotors.Click += new Microsoft.Office.Tools.Ribbon.RibbonControlEventHandler(this.buttonDecommissionedMotors_Click);
+            // 
+            // buttonMotorsHistory
+            // 
+            this.buttonMotorsHistory.Image = ((System.Drawing.Image)(resources.GetObject("buttonMotorsHistory.Image")));
+            this.buttonMotorsHistory.Label = "Двигуни (історія переміщень)";
+            this.buttonMotorsHistory.Name = "buttonMotorsHistory";
+            this.buttonMotorsHistory.ScreenTip = "Двигуни (історія переміщень)";
+            this.buttonMotorsHistory.ShowImage = true;
+            this.buttonMotorsHistory.SuperTip = "Запит до БД, який показує інформацію по переміщенню електродвигунів між об\'єктами" +
+                " (історія)";
+            this.buttonMotorsHistory.Click += new Microsoft.Office.Tools.Ribbon.RibbonControlEventHandler(this.buttonMotorsHistory_Click);
             // 
             // menuWilo
             // 
@@ -249,7 +276,7 @@
             this.buttonMiniWiloMotors.ScreenTip = "Двигуни Wilo з мокрим ротором";
             this.buttonMiniWiloMotors.ShowImage = true;
             this.buttonMiniWiloMotors.SuperTip = "Запит до БД, який вибирає двигуни Wilo  з мокрим ротором ЗАПИТ ПОТРІБНО ПОНОВЛЮВА" +
-    "ТИ (24.12.2016)";
+                "ТИ (24.12.2016)";
             this.buttonMiniWiloMotors.Click += new Microsoft.Office.Tools.Ribbon.RibbonControlEventHandler(this.buttonMiniWiloMotors_Click);
             // 
             // buttonGroupByMiniWiloMotors
@@ -260,7 +287,7 @@
             this.buttonGroupByMiniWiloMotors.ScreenTip = "Згруповані двигуни Wilo з мокрим ротором";
             this.buttonGroupByMiniWiloMotors.ShowImage = true;
             this.buttonGroupByMiniWiloMotors.SuperTip = "Запит до БД, який вибирає двигуни  Wilo з мокрим ротором та групує їх по типу ЗАП" +
-    "ИТ ПОТРІБНО ПОНОВЛЮВАТИ (24.12.2016)";
+                "ИТ ПОТРІБНО ПОНОВЛЮВАТИ (24.12.2016)";
             this.buttonGroupByMiniWiloMotors.Click += new Microsoft.Office.Tools.Ribbon.RibbonControlEventHandler(this.buttonGroupByMiniWiloMotors_Click);
             // 
             // buttonGroupByRotorsMiniWiloMotor
@@ -271,7 +298,7 @@
             this.buttonGroupByRotorsMiniWiloMotor.ScreenTip = "Згруповані двигуни Wilo з мокрим ротором  по типу ротора";
             this.buttonGroupByRotorsMiniWiloMotor.ShowImage = true;
             this.buttonGroupByRotorsMiniWiloMotor.SuperTip = "Запит до БД, який вибирає двигуни  Wilo з мокрим ротором та групує їх по типу рот" +
-    "ора ЗАПИТ ПОТРІБНО ПОНОВЛЮВАТИ (24.12.2016)";
+                "ора ЗАПИТ ПОТРІБНО ПОНОВЛЮВАТИ (24.12.2016)";
             this.buttonGroupByRotorsMiniWiloMotor.Click += new Microsoft.Office.Tools.Ribbon.RibbonControlEventHandler(this.buttonGroupByRotorsMiniWiloMotor_Click);
             // 
             // buttonWiloSpareParts
@@ -327,7 +354,7 @@
             this.buttonObjectsHasNotMeters.ScreenTip = "Об\'єкти без лічильників";
             this.buttonObjectsHasNotMeters.ShowImage = true;
             this.buttonObjectsHasNotMeters.SuperTip = "Запит до БД, який показує інформацію по об\'єктах на яких не встановлені лічильник" +
-    "и (не має даних по лічильниках)";
+                "и (не має даних по лічильниках)";
             this.buttonObjectsHasNotMeters.Click += new Microsoft.Office.Tools.Ribbon.RibbonControlEventHandler(this.buttonObjectsHasNotMeters_Click);
             // 
             // buttonGroupMetersByContracts
@@ -348,7 +375,7 @@
             this.buttonMetersHistory.ScreenTip = "Лічильники (історія переміщень)";
             this.buttonMetersHistory.ShowImage = true;
             this.buttonMetersHistory.SuperTip = "Запит до БД, який показує інформацію по переміщенню лічильників між об\'єктами (іс" +
-    "торія)";
+                "торія)";
             this.buttonMetersHistory.Click += new Microsoft.Office.Tools.Ribbon.RibbonControlEventHandler(this.buttonMetersHistory_Click);
             // 
             // buttonJointInspection
@@ -359,7 +386,7 @@
             this.buttonJointInspection.ScreenTip = "Спільна держповірка";
             this.buttonJointInspection.ShowImage = true;
             this.buttonJointInspection.SuperTip = "Запит до БД, який показує об\'єкти, на яких, рік держповірки лічильника(ів) та тра" +
-    "нсформатора(ів) струму збігається";
+                "нсформатора(ів) струму збігається";
             this.buttonJointInspection.Click += new Microsoft.Office.Tools.Ribbon.RibbonControlEventHandler(this.buttonJointInspection_Click);
             // 
             // menuTC
@@ -403,7 +430,7 @@
             this.buttonTCHistory.ScreenTip = "Трансформатори струму (історія переміщень)";
             this.buttonTCHistory.ShowImage = true;
             this.buttonTCHistory.SuperTip = "Запит до БД, який показує інформацію по переміщенню трансформаторів струму між об" +
-    "\'єктами (історія)";
+                "\'єктами (історія)";
             this.buttonTCHistory.Click += new Microsoft.Office.Tools.Ribbon.RibbonControlEventHandler(this.buttonTCHistory_Click);
             // 
             // buttonJointInspection2
@@ -414,7 +441,7 @@
             this.buttonJointInspection2.ScreenTip = "Спільна держповірка";
             this.buttonJointInspection2.ShowImage = true;
             this.buttonJointInspection2.SuperTip = "Запит до БД, який показує об\'єкти, на яких, рік держповірки лічильника(ів) та тра" +
-    "нсформатора(ів) струму збігається";
+                "нсформатора(ів) струму збігається";
             this.buttonJointInspection2.Click += new Microsoft.Office.Tools.Ribbon.RibbonControlEventHandler(this.buttonJointInspection_Click);
             // 
             // menuCondensers
@@ -486,12 +513,6 @@
             this.buttonWilo.ShowImage = true;
             this.buttonWilo.Click += new Microsoft.Office.Tools.Ribbon.RibbonControlEventHandler(this.buttonWilo_Click);
             // 
-            // groupFunctions
-            // 
-            this.groupFunctions.Items.Add(this.menuHomeFunctions);
-            this.groupFunctions.Label = "Формули";
-            this.groupFunctions.Name = "groupFunctions";
-            // 
             // menuHomeFunctions
             // 
             this.menuHomeFunctions.Image = ((System.Drawing.Image)(resources.GetObject("menuHomeFunctions.Image")));
@@ -523,12 +544,6 @@
             this.buttonGas.SuperTip = "Формула, яка рахує суму за спожитий газ";
             this.buttonGas.Click += new Microsoft.Office.Tools.Ribbon.RibbonControlEventHandler(this.buttonGas_Click);
             // 
-            // groupOther
-            // 
-            this.groupOther.Items.Add(this.buttonCalculation);
-            this.groupOther.Label = "Решта";
-            this.groupOther.Name = "groupOther";
-            // 
             // buttonCalculation
             // 
             this.buttonCalculation.ControlSize = Microsoft.Office.Core.RibbonControlSize.RibbonControlSizeLarge;
@@ -538,7 +553,17 @@
             this.buttonCalculation.ScreenTip = "Калькуляція субспоживачів";
             this.buttonCalculation.ShowImage = true;
             this.buttonCalculation.SuperTip = "Завантажується форма, для створення калькуляції витрат на технічне обслуговування" +
-    " за передачу електроенергії субспоживачу";
+                " за передачу електроенергії субспоживачу";
+            // 
+            // buttonMotorRepairs
+            // 
+            this.buttonMotorRepairs.Image = ((System.Drawing.Image)(resources.GetObject("buttonMotorRepairs.Image")));
+            this.buttonMotorRepairs.Label = "Двигуни (історія ремонтів)";
+            this.buttonMotorRepairs.Name = "buttonMotorRepairs";
+            this.buttonMotorRepairs.ScreenTip = "Двигуни (історія ремонтів)";
+            this.buttonMotorRepairs.ShowImage = true;
+            this.buttonMotorRepairs.SuperTip = "Запит до БД, який показує інформацію по ремонту електродвигунів (історія)";
+            this.buttonMotorRepairs.Click += new Microsoft.Office.Tools.Ribbon.RibbonControlEventHandler(this.buttonMotorRepairs_Click);
             // 
             // Ribbon
             // 
@@ -602,6 +627,8 @@
         internal Microsoft.Office.Tools.Ribbon.RibbonButton buttonWilo;
         internal Microsoft.Office.Tools.Ribbon.RibbonGroup groupOther;
         internal Microsoft.Office.Tools.Ribbon.RibbonButton buttonCalculation;
+        internal Microsoft.Office.Tools.Ribbon.RibbonButton buttonMotorsHistory;
+        internal Microsoft.Office.Tools.Ribbon.RibbonButton buttonMotorRepairs;
     }
 
     partial class ThisRibbonCollection

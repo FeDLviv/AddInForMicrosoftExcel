@@ -1,6 +1,6 @@
 ﻿
-Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2012
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LTEExcelAddIn", "LTEExcelAddIn\LTEExcelAddIn.csproj", "{257E9E88-8190-497B-900C-EB955084145E}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UDFs", "UDFs\UDFs.csproj", "{B98A2095-2663-4455-B580-27C7BAEA3ABD}"

@@ -241,7 +241,6 @@
       <DependentUpon>SQLSettingsForm.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="app.config" />
-    <None Include="LTEExcelAddIn_1_TemporaryKey.pfx" />
     <None Include="LTEExcelAddIn_TemporaryKey.pfx" />
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
@@ -347,10 +346,10 @@
     <SignManifests>true</SignManifests>
   </PropertyGroup>
   <PropertyGroup>
-    <ManifestKeyFile>LTEExcelAddIn_1_TemporaryKey.pfx</ManifestKeyFile>
+    <ManifestKeyFile>LTEExcelAddIn_TemporaryKey.pfx</ManifestKeyFile>
   </PropertyGroup>
   <PropertyGroup>
-    <ManifestCertificateThumbprint>04D4093B22B62794BA7AE6D81989804BBF618B1E</ManifestCertificateThumbprint>
+    <ManifestCertificateThumbprint>7BBC0DD2E0EFDD3B48A8F028EAC53F31D996D7E4</ManifestCertificateThumbprint>
   </PropertyGroup>
   <PropertyGroup>
     <StartupObject />

@@ -107,7 +107,10 @@
                                     <TextBlock Grid.Row="3" Grid.Column="1" FontWeight="Bold" Text="{Binding Capacitor, TargetNullValue=-}" />
                                 </Grid>
                             </Expander>
-                            <TextBlock Grid.Row="3" Grid.Column="2" VerticalAlignment="Top"  HorizontalAlignment="Left" Margin="3" FontWeight="Bold" Text="{Binding Path=Quantity, StringFormat ={}{0} шт.}" FontFamily="Arial Black" />
+                            <TextBlock Grid.Row="3" Grid.Column="2" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="3" FontWeight="Bold" FontFamily="Arial Black" >
+                                <Run Text="{Binding Path=Quantity}" />
+                                <Run Text="шт." />
+                            </TextBlock>
                         </Grid>
                     </Border>
                 </DataTemplate>
