@@ -80,6 +80,7 @@
             this.buttonGas = this.Factory.CreateRibbonButton();
             this.groupOther = this.Factory.CreateRibbonGroup();
             this.buttonCalculation = this.Factory.CreateRibbonButton();
+            this.buttonVersion = this.Factory.CreateRibbonButton();
             this.tab.SuspendLayout();
             this.groupSQL.SuspendLayout();
             this.groupFunctions.SuspendLayout();
@@ -551,6 +552,7 @@
             // groupOther
             // 
             this.groupOther.Items.Add(this.buttonCalculation);
+            this.groupOther.Items.Add(this.buttonVersion);
             this.groupOther.Label = "Решта";
             this.groupOther.Name = "groupOther";
             // 
@@ -564,6 +566,17 @@
             this.buttonCalculation.ShowImage = true;
             this.buttonCalculation.SuperTip = "Завантажується форма, для створення калькуляції витрат на технічне обслуговування" +
                 " за передачу електроенергії субспоживачу";
+            // 
+            // buttonVersion
+            // 
+            this.buttonVersion.ControlSize = Microsoft.Office.Core.RibbonControlSize.RibbonControlSizeLarge;
+            this.buttonVersion.Image = global::LTEExcelAddIn.Properties.Resources.lte;
+            this.buttonVersion.Label = "Версія Add-In";
+            this.buttonVersion.Name = "buttonVersion";
+            this.buttonVersion.ScreenTip = "Версія Add-In";
+            this.buttonVersion.ShowImage = true;
+            this.buttonVersion.SuperTip = "Вивід повідомлення,  в якому вказується версія програми";
+            this.buttonVersion.Click += new Microsoft.Office.Tools.Ribbon.RibbonControlEventHandler(this.buttonVersion_Click);
             // 
             // Ribbon
             // 
@@ -629,6 +642,7 @@
         internal Microsoft.Office.Tools.Ribbon.RibbonButton buttonCalculation;
         internal Microsoft.Office.Tools.Ribbon.RibbonButton buttonMotorsHistory;
         internal Microsoft.Office.Tools.Ribbon.RibbonButton buttonMotorRepairs;
+        internal Microsoft.Office.Tools.Ribbon.RibbonButton buttonVersion;
     }
 
     partial class ThisRibbonCollection

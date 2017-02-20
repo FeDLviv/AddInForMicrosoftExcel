@@ -8,6 +8,7 @@ using Excel = Microsoft.Office.Interop.Excel;
 using MySql.Data.MySqlClient;
 using System.Text.RegularExpressions;
 using System.Windows.Forms;
+using System.Reflection;
 
 namespace LTEExcelAddIn
 {
@@ -66,6 +67,11 @@ namespace LTEExcelAddIn
             {
                  MessageBox.Show(ex.Message, "Помилка", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
+        }
+
+        private void buttonVersion_Click(object sender, RibbonControlEventArgs e)
+        {
+            MessageBox.Show("LTEExcelAddIn [AssemblyVersion] - " + Assembly.GetExecutingAssembly().GetName().Version.ToString(), "Версія програми", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
         private void buttonContractsInformation_Click(object sender, RibbonControlEventArgs e)
