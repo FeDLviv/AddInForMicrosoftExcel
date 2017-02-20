@@ -37,8 +37,6 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Ribbon));
             this.tab = this.Factory.CreateRibbonTab();
             this.groupSQL = this.Factory.CreateRibbonGroup();
-            this.groupFunctions = this.Factory.CreateRibbonGroup();
-            this.groupOther = this.Factory.CreateRibbonGroup();
             this.buttonSQLSettings = this.Factory.CreateRibbonButton();
             this.buttonSQLQuery = this.Factory.CreateRibbonButton();
             this.menuContracts = this.Factory.CreateRibbonMenu();
@@ -51,6 +49,7 @@
             this.buttonSumPowerOfObjects = this.Factory.CreateRibbonButton();
             this.buttonDecommissionedMotors = this.Factory.CreateRibbonButton();
             this.buttonMotorsHistory = this.Factory.CreateRibbonButton();
+            this.buttonMotorRepairs = this.Factory.CreateRibbonButton();
             this.menuWilo = this.Factory.CreateRibbonMenu();
             this.buttonMiniWiloMotors = this.Factory.CreateRibbonButton();
             this.buttonGroupByMiniWiloMotors = this.Factory.CreateRibbonButton();
@@ -75,11 +74,12 @@
             this.menuEmployees = this.Factory.CreateRibbonMenu();
             this.buttonEmployeesES = this.Factory.CreateRibbonButton();
             this.buttonWilo = this.Factory.CreateRibbonButton();
+            this.groupFunctions = this.Factory.CreateRibbonGroup();
             this.menuHomeFunctions = this.Factory.CreateRibbonMenu();
             this.buttonElectricPowerDoubleZones = this.Factory.CreateRibbonButton();
             this.buttonGas = this.Factory.CreateRibbonButton();
+            this.groupOther = this.Factory.CreateRibbonGroup();
             this.buttonCalculation = this.Factory.CreateRibbonButton();
-            this.buttonMotorRepairs = this.Factory.CreateRibbonButton();
             this.tab.SuspendLayout();
             this.groupSQL.SuspendLayout();
             this.groupFunctions.SuspendLayout();
@@ -109,18 +109,6 @@
             this.groupSQL.Items.Add(this.buttonWilo);
             this.groupSQL.Label = "База даних";
             this.groupSQL.Name = "groupSQL";
-            // 
-            // groupFunctions
-            // 
-            this.groupFunctions.Items.Add(this.menuHomeFunctions);
-            this.groupFunctions.Label = "Формули";
-            this.groupFunctions.Name = "groupFunctions";
-            // 
-            // groupOther
-            // 
-            this.groupOther.Items.Add(this.buttonCalculation);
-            this.groupOther.Label = "Решта";
-            this.groupOther.Name = "groupOther";
             // 
             // buttonSQLSettings
             // 
@@ -254,6 +242,16 @@
             this.buttonMotorsHistory.SuperTip = "Запит до БД, який показує інформацію по переміщенню електродвигунів між об\'єктами" +
                 " (історія)";
             this.buttonMotorsHistory.Click += new Microsoft.Office.Tools.Ribbon.RibbonControlEventHandler(this.buttonMotorsHistory_Click);
+            // 
+            // buttonMotorRepairs
+            // 
+            this.buttonMotorRepairs.Image = ((System.Drawing.Image)(resources.GetObject("buttonMotorRepairs.Image")));
+            this.buttonMotorRepairs.Label = "Двигуни (історія ремонтів)";
+            this.buttonMotorRepairs.Name = "buttonMotorRepairs";
+            this.buttonMotorRepairs.ScreenTip = "Двигуни (історія ремонтів)";
+            this.buttonMotorRepairs.ShowImage = true;
+            this.buttonMotorRepairs.SuperTip = "Запит до БД, який показує інформацію по ремонту електродвигунів (історія)";
+            this.buttonMotorRepairs.Click += new Microsoft.Office.Tools.Ribbon.RibbonControlEventHandler(this.buttonMotorRepairs_Click);
             // 
             // menuWilo
             // 
@@ -513,6 +511,12 @@
             this.buttonWilo.ShowImage = true;
             this.buttonWilo.Click += new Microsoft.Office.Tools.Ribbon.RibbonControlEventHandler(this.buttonWilo_Click);
             // 
+            // groupFunctions
+            // 
+            this.groupFunctions.Items.Add(this.menuHomeFunctions);
+            this.groupFunctions.Label = "Формули";
+            this.groupFunctions.Name = "groupFunctions";
+            // 
             // menuHomeFunctions
             // 
             this.menuHomeFunctions.Image = ((System.Drawing.Image)(resources.GetObject("menuHomeFunctions.Image")));
@@ -544,6 +548,12 @@
             this.buttonGas.SuperTip = "Формула, яка рахує суму за спожитий газ";
             this.buttonGas.Click += new Microsoft.Office.Tools.Ribbon.RibbonControlEventHandler(this.buttonGas_Click);
             // 
+            // groupOther
+            // 
+            this.groupOther.Items.Add(this.buttonCalculation);
+            this.groupOther.Label = "Решта";
+            this.groupOther.Name = "groupOther";
+            // 
             // buttonCalculation
             // 
             this.buttonCalculation.ControlSize = Microsoft.Office.Core.RibbonControlSize.RibbonControlSizeLarge;
@@ -554,16 +564,6 @@
             this.buttonCalculation.ShowImage = true;
             this.buttonCalculation.SuperTip = "Завантажується форма, для створення калькуляції витрат на технічне обслуговування" +
                 " за передачу електроенергії субспоживачу";
-            // 
-            // buttonMotorRepairs
-            // 
-            this.buttonMotorRepairs.Image = ((System.Drawing.Image)(resources.GetObject("buttonMotorRepairs.Image")));
-            this.buttonMotorRepairs.Label = "Двигуни (історія ремонтів)";
-            this.buttonMotorRepairs.Name = "buttonMotorRepairs";
-            this.buttonMotorRepairs.ScreenTip = "Двигуни (історія ремонтів)";
-            this.buttonMotorRepairs.ShowImage = true;
-            this.buttonMotorRepairs.SuperTip = "Запит до БД, який показує інформацію по ремонту електродвигунів (історія)";
-            this.buttonMotorRepairs.Click += new Microsoft.Office.Tools.Ribbon.RibbonControlEventHandler(this.buttonMotorRepairs_Click);
             // 
             // Ribbon
             // 

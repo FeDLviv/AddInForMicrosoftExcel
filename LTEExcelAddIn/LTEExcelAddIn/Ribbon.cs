@@ -331,7 +331,9 @@ SELECT
     CAST(IFNULL(wiloRotors.idRotor, 'невідомо') AS CHAR) AS 'артикул ротора',
     IFNULL(wiloRotors.type, 'невідомо') AS 'тип ротора',
     IF(wiloRotors.idRotor IS NOT NULL, IF(wiloRotors.typeWheel IS NULL, 'ні', 'так'), 'невідомо') AS 'ротор з крильчаткою',
-    COUNT(*) AS 'кількість'
+    (SELECT COUNT(*) FROM wiloRotors_lte WHERE wiloRotors_lte.idRotor = wiloRotors.idRotor AND wiloRotors_lte.IsUsed = 0) AS 'на складі',
+    (SELECT COUNT(*) FROM wiloRotors_lte WHERE wiloRotors_lte.idRotor = wiloRotors.idRotor AND wiloRotors_lte.IsUsed <> 0) AS 'у використанні',
+    COUNT(*) AS 'кількість двигунів'
 FROM 
     motors_lte LEFT OUTER JOIN wiloCharacteristics USING (idWiloArt) 
         LEFT OUTER JOIN wiloRotors USING(idRotor) 
@@ -342,7 +344,7 @@ GROUP BY
     wiloRotors.type
 ORDER BY
     wiloRotors.idRotor IS NULL,
-    `кількість` DESC,
+    `кількість двигунів` DESC,
     wiloRotors.idRotor;
             ", buttonGroupByRotorsMiniWiloMotor.Label).ShowDialog();
         }
