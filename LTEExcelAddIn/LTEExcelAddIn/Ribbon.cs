@@ -84,11 +84,12 @@ SELECT
     organization AS 'договір з',
     contract AS 'номер договору',
     FORMAT(power, 2) AS 'договірна потужність (кВт)',
-    objects.category AS 'категорія надійності'
+    connect AS 'мережа',
+    category AS 'категорія надійності'
 FROM 
     objects
 WHERE
-    type <> 'склад'
+    type NOT IN ('склад', 'ТЕЦ', 'ТЦ')
 ORDER BY
     FIELD(organization, 'ЛТЕ', 'решта', 'ОСББ', 'освіта', 'ЖЕК', 'ЛОЕ') DESC,
     organization,
@@ -110,7 +111,7 @@ SELECT
 FROM 
     objects
 WHERE
-    type <> 'склад'
+    type NOT IN ('склад', 'ТЕЦ', 'ТЦ')
 GROUP BY
     organization
 ORDER BY
@@ -437,7 +438,7 @@ SELECT
 FROM
     objects LEFT OUTER JOIN meters_lte ON objects.idObject = meters_lte.idObject
 WHERE
-    meters_lte.idObject IS NULL AND objects.type <> 'склад'
+    meters_lte.idObject IS NULL AND objects.type NOT IN ('склад', 'ТЕЦ','ТЦ')
 ORDER BY
     region,
     FIELD(type, 'гуртожиток', 'майстерня', 'ТК','ІТП', 'ЦТП', 'котельня') DESC,
@@ -650,6 +651,11 @@ ORDER BY
         private void buttonElectricPowerDoubleZones_Click(object sender, RibbonControlEventArgs e)
         {
             insertHomeFunction("ЕЛЕКТРОЕНЕРГІЯ_ДВОХЗОННИЙ_09_16");
+        }
+
+        private void buttonElectricPowerDoubleZones2_Click(object sender, RibbonControlEventArgs e)
+        {
+            insertHomeFunction("ЕЛЕКТРОЕНЕРГІЯ_ДВОХЗОННИЙ_03_17");
         }
 
         private void buttonGas_Click(object sender, RibbonControlEventArgs e)

@@ -81,6 +81,7 @@
             this.groupOther = this.Factory.CreateRibbonGroup();
             this.buttonCalculation = this.Factory.CreateRibbonButton();
             this.buttonVersion = this.Factory.CreateRibbonButton();
+            this.buttonElectricPowerDoubleZones2 = this.Factory.CreateRibbonButton();
             this.tab.SuspendLayout();
             this.groupSQL.SuspendLayout();
             this.groupFunctions.SuspendLayout();
@@ -522,6 +523,7 @@
             // 
             this.menuHomeFunctions.Image = ((System.Drawing.Image)(resources.GetObject("menuHomeFunctions.Image")));
             this.menuHomeFunctions.Items.Add(this.buttonElectricPowerDoubleZones);
+            this.menuHomeFunctions.Items.Add(this.buttonElectricPowerDoubleZones2);
             this.menuHomeFunctions.Items.Add(this.buttonGas);
             this.menuHomeFunctions.Label = "ЖЕК";
             this.menuHomeFunctions.Name = "menuHomeFunctions";
@@ -577,6 +579,16 @@
             this.buttonVersion.ShowImage = true;
             this.buttonVersion.SuperTip = "Вивід повідомлення,  в якому вказується версія програми";
             this.buttonVersion.Click += new Microsoft.Office.Tools.Ribbon.RibbonControlEventHandler(this.buttonVersion_Click);
+            // 
+            // buttonElectricPowerDoubleZones2
+            // 
+            this.buttonElectricPowerDoubleZones2.Image = ((System.Drawing.Image)(resources.GetObject("buttonElectricPowerDoubleZones2.Image")));
+            this.buttonElectricPowerDoubleZones2.Label = "ЕЛЕКТРОЕНЕРГІЯ_ДВОХЗОННИЙ_03_17";
+            this.buttonElectricPowerDoubleZones2.Name = "buttonElectricPowerDoubleZones2";
+            this.buttonElectricPowerDoubleZones2.ScreenTip = "Формула ЕЛЕКТРОЕНЕРГІЯ_ДВОХЗОННИЙ_03_17";
+            this.buttonElectricPowerDoubleZones2.ShowImage = true;
+            this.buttonElectricPowerDoubleZones2.SuperTip = "Формула, яка рахує суму за спожиту електроенергію за двозонним лічильником";
+            this.buttonElectricPowerDoubleZones2.Click += new Microsoft.Office.Tools.Ribbon.RibbonControlEventHandler(this.buttonElectricPowerDoubleZones2_Click);
             // 
             // Ribbon
             // 
@@ -643,6 +655,7 @@
         internal Microsoft.Office.Tools.Ribbon.RibbonButton buttonMotorsHistory;
         internal Microsoft.Office.Tools.Ribbon.RibbonButton buttonMotorRepairs;
         internal Microsoft.Office.Tools.Ribbon.RibbonButton buttonVersion;
+        internal Microsoft.Office.Tools.Ribbon.RibbonButton buttonElectricPowerDoubleZones2;
     }
 
     partial class ThisRibbonCollection
