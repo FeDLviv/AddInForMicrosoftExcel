@@ -37,6 +37,8 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Ribbon));
             this.tab = this.Factory.CreateRibbonTab();
             this.groupSQL = this.Factory.CreateRibbonGroup();
+            this.groupFunctions = this.Factory.CreateRibbonGroup();
+            this.groupOther = this.Factory.CreateRibbonGroup();
             this.buttonSQLSettings = this.Factory.CreateRibbonButton();
             this.buttonSQLQuery = this.Factory.CreateRibbonButton();
             this.menuContracts = this.Factory.CreateRibbonMenu();
@@ -71,17 +73,20 @@
             this.buttonCondensersInObjects = this.Factory.CreateRibbonButton();
             this.menuTS = this.Factory.CreateRibbonMenu();
             this.buttonTSAtObjects = this.Factory.CreateRibbonButton();
+            this.menuSubabonent = this.Factory.CreateRibbonMenu();
+            this.buttonSubabonentsInObjects = this.Factory.CreateRibbonButton();
+            this.buttonGroupByOrganization = this.Factory.CreateRibbonButton();
+            this.buttonSubabonentMetersInObjects = this.Factory.CreateRibbonButton();
             this.menuEmployees = this.Factory.CreateRibbonMenu();
             this.buttonEmployeesES = this.Factory.CreateRibbonButton();
             this.buttonWilo = this.Factory.CreateRibbonButton();
-            this.groupFunctions = this.Factory.CreateRibbonGroup();
             this.menuHomeFunctions = this.Factory.CreateRibbonMenu();
             this.buttonElectricPowerDoubleZones = this.Factory.CreateRibbonButton();
+            this.buttonElectricPowerDoubleZones2 = this.Factory.CreateRibbonButton();
             this.buttonGas = this.Factory.CreateRibbonButton();
-            this.groupOther = this.Factory.CreateRibbonGroup();
             this.buttonCalculation = this.Factory.CreateRibbonButton();
             this.buttonVersion = this.Factory.CreateRibbonButton();
-            this.buttonElectricPowerDoubleZones2 = this.Factory.CreateRibbonButton();
+            this.buttonSubabonentTCInObjects = this.Factory.CreateRibbonButton();
             this.tab.SuspendLayout();
             this.groupSQL.SuspendLayout();
             this.groupFunctions.SuspendLayout();
@@ -107,10 +112,24 @@
             this.groupSQL.Items.Add(this.menuTC);
             this.groupSQL.Items.Add(this.menuCondensers);
             this.groupSQL.Items.Add(this.menuTS);
+            this.groupSQL.Items.Add(this.menuSubabonent);
             this.groupSQL.Items.Add(this.menuEmployees);
             this.groupSQL.Items.Add(this.buttonWilo);
             this.groupSQL.Label = "База даних";
             this.groupSQL.Name = "groupSQL";
+            // 
+            // groupFunctions
+            // 
+            this.groupFunctions.Items.Add(this.menuHomeFunctions);
+            this.groupFunctions.Label = "Формули";
+            this.groupFunctions.Name = "groupFunctions";
+            // 
+            // groupOther
+            // 
+            this.groupOther.Items.Add(this.buttonCalculation);
+            this.groupOther.Items.Add(this.buttonVersion);
+            this.groupOther.Label = "Решта";
+            this.groupOther.Name = "groupOther";
             // 
             // buttonSQLSettings
             // 
@@ -292,13 +311,13 @@
             // 
             // buttonGroupByRotorsMiniWiloMotor
             // 
-            this.buttonGroupByRotorsMiniWiloMotor.Image = ((System.Drawing.Image)(resources.GetObject("buttonGroupByRotorsMiniWiloMotor.Image")));
+            this.buttonGroupByRotorsMiniWiloMotor.Image = global::LTEExcelAddIn.Properties.Resources.query;
             this.buttonGroupByRotorsMiniWiloMotor.Label = "Згруповані двигуни Wilo з мокрим ротором  по типу ротора";
             this.buttonGroupByRotorsMiniWiloMotor.Name = "buttonGroupByRotorsMiniWiloMotor";
             this.buttonGroupByRotorsMiniWiloMotor.ScreenTip = "Згруповані двигуни Wilo з мокрим ротором  по типу ротора";
             this.buttonGroupByRotorsMiniWiloMotor.ShowImage = true;
             this.buttonGroupByRotorsMiniWiloMotor.SuperTip = "Запит до БД, який вибирає двигуни  Wilo з мокрим ротором та групує їх по типу рот" +
-                "ора ЗАПИТ ПОТРІБНО ПОНОВЛЮВАТИ (24.12.2016)";
+                "ора";
             this.buttonGroupByRotorsMiniWiloMotor.Click += new Microsoft.Office.Tools.Ribbon.RibbonControlEventHandler(this.buttonGroupByRotorsMiniWiloMotor_Click);
             // 
             // buttonWiloSpareParts
@@ -484,6 +503,50 @@
             this.buttonTSAtObjects.SuperTip = "Запит до БД, який показує від яких трансформаторних підстанції живляться об\'єкти";
             this.buttonTSAtObjects.Click += new Microsoft.Office.Tools.Ribbon.RibbonControlEventHandler(this.buttonTSAtObjects_Click);
             // 
+            // menuSubabonent
+            // 
+            this.menuSubabonent.Image = global::LTEExcelAddIn.Properties.Resources.subabonent;
+            this.menuSubabonent.Items.Add(this.buttonSubabonentsInObjects);
+            this.menuSubabonent.Items.Add(this.buttonGroupByOrganization);
+            this.menuSubabonent.Items.Add(this.buttonSubabonentMetersInObjects);
+            this.menuSubabonent.Items.Add(this.buttonSubabonentTCInObjects);
+            this.menuSubabonent.Label = "Субабоненти";
+            this.menuSubabonent.Name = "menuSubabonent";
+            this.menuSubabonent.ScreenTip = "Субабоненти";
+            this.menuSubabonent.ShowImage = true;
+            this.menuSubabonent.SuperTip = "Запити до БД, щодо субабонентів";
+            // 
+            // buttonSubabonentsInObjects
+            // 
+            this.buttonSubabonentsInObjects.Image = ((System.Drawing.Image)(resources.GetObject("buttonSubabonentsInObjects.Image")));
+            this.buttonSubabonentsInObjects.Label = "Субабоненти на об\'єктах";
+            this.buttonSubabonentsInObjects.Name = "buttonSubabonentsInObjects";
+            this.buttonSubabonentsInObjects.ScreenTip = "Субабоненти на об\'єктах";
+            this.buttonSubabonentsInObjects.ShowImage = true;
+            this.buttonSubabonentsInObjects.SuperTip = "Запит до БД, який показує інформацію по субабонентах на об\'єктах";
+            this.buttonSubabonentsInObjects.Click += new Microsoft.Office.Tools.Ribbon.RibbonControlEventHandler(this.buttonSubabonentsInObjects_Click);
+            // 
+            // buttonGroupByOrganization
+            // 
+            this.buttonGroupByOrganization.Image = ((System.Drawing.Image)(resources.GetObject("buttonGroupByOrganization.Image")));
+            this.buttonGroupByOrganization.Label = "Субабоненти згруповані по організаціях";
+            this.buttonGroupByOrganization.Name = "buttonGroupByOrganization";
+            this.buttonGroupByOrganization.ScreenTip = "Субабоненти згруповані по організаціях";
+            this.buttonGroupByOrganization.ShowImage = true;
+            this.buttonGroupByOrganization.SuperTip = "Запит до БД, який групує субабонентів по організаціях  та підраховує їх кількість" +
+                "";
+            this.buttonGroupByOrganization.Click += new Microsoft.Office.Tools.Ribbon.RibbonControlEventHandler(this.buttonGroupByOrganization_Click);
+            // 
+            // buttonSubabonentMetersInObjects
+            // 
+            this.buttonSubabonentMetersInObjects.Image = ((System.Drawing.Image)(resources.GetObject("buttonSubabonentMetersInObjects.Image")));
+            this.buttonSubabonentMetersInObjects.Label = "Лічильники субабонентів  на об\'єктах";
+            this.buttonSubabonentMetersInObjects.Name = "buttonSubabonentMetersInObjects";
+            this.buttonSubabonentMetersInObjects.ScreenTip = "Лічильники субабонентів на об\'єктах";
+            this.buttonSubabonentMetersInObjects.ShowImage = true;
+            this.buttonSubabonentMetersInObjects.SuperTip = "Запит до БД, який показує інформацію по лічильниках субабонентів на об\'єктах";
+            this.buttonSubabonentMetersInObjects.Click += new Microsoft.Office.Tools.Ribbon.RibbonControlEventHandler(this.buttonSubabonentMetersInObjects_Click);
+            // 
             // menuEmployees
             // 
             this.menuEmployees.Image = global::LTEExcelAddIn.Properties.Resources.employees;
@@ -513,12 +576,6 @@
             this.buttonWilo.ShowImage = true;
             this.buttonWilo.Click += new Microsoft.Office.Tools.Ribbon.RibbonControlEventHandler(this.buttonWilo_Click);
             // 
-            // groupFunctions
-            // 
-            this.groupFunctions.Items.Add(this.menuHomeFunctions);
-            this.groupFunctions.Label = "Формули";
-            this.groupFunctions.Name = "groupFunctions";
-            // 
             // menuHomeFunctions
             // 
             this.menuHomeFunctions.Image = ((System.Drawing.Image)(resources.GetObject("menuHomeFunctions.Image")));
@@ -541,6 +598,16 @@
             this.buttonElectricPowerDoubleZones.SuperTip = "Формула, яка рахує суму за спожиту електроенергію за двозонним лічильником";
             this.buttonElectricPowerDoubleZones.Click += new Microsoft.Office.Tools.Ribbon.RibbonControlEventHandler(this.buttonElectricPowerDoubleZones_Click);
             // 
+            // buttonElectricPowerDoubleZones2
+            // 
+            this.buttonElectricPowerDoubleZones2.Image = ((System.Drawing.Image)(resources.GetObject("buttonElectricPowerDoubleZones2.Image")));
+            this.buttonElectricPowerDoubleZones2.Label = "ЕЛЕКТРОЕНЕРГІЯ_ДВОХЗОННИЙ_03_17";
+            this.buttonElectricPowerDoubleZones2.Name = "buttonElectricPowerDoubleZones2";
+            this.buttonElectricPowerDoubleZones2.ScreenTip = "Формула ЕЛЕКТРОЕНЕРГІЯ_ДВОХЗОННИЙ_03_17";
+            this.buttonElectricPowerDoubleZones2.ShowImage = true;
+            this.buttonElectricPowerDoubleZones2.SuperTip = "Формула, яка рахує суму за спожиту електроенергію за двозонним лічильником";
+            this.buttonElectricPowerDoubleZones2.Click += new Microsoft.Office.Tools.Ribbon.RibbonControlEventHandler(this.buttonElectricPowerDoubleZones2_Click);
+            // 
             // buttonGas
             // 
             this.buttonGas.Image = global::LTEExcelAddIn.Properties.Resources.gas;
@@ -550,13 +617,6 @@
             this.buttonGas.ShowImage = true;
             this.buttonGas.SuperTip = "Формула, яка рахує суму за спожитий газ";
             this.buttonGas.Click += new Microsoft.Office.Tools.Ribbon.RibbonControlEventHandler(this.buttonGas_Click);
-            // 
-            // groupOther
-            // 
-            this.groupOther.Items.Add(this.buttonCalculation);
-            this.groupOther.Items.Add(this.buttonVersion);
-            this.groupOther.Label = "Решта";
-            this.groupOther.Name = "groupOther";
             // 
             // buttonCalculation
             // 
@@ -580,15 +640,16 @@
             this.buttonVersion.SuperTip = "Вивід повідомлення,  в якому вказується версія програми";
             this.buttonVersion.Click += new Microsoft.Office.Tools.Ribbon.RibbonControlEventHandler(this.buttonVersion_Click);
             // 
-            // buttonElectricPowerDoubleZones2
+            // buttonSubabonentTCInObjects
             // 
-            this.buttonElectricPowerDoubleZones2.Image = ((System.Drawing.Image)(resources.GetObject("buttonElectricPowerDoubleZones2.Image")));
-            this.buttonElectricPowerDoubleZones2.Label = "ЕЛЕКТРОЕНЕРГІЯ_ДВОХЗОННИЙ_03_17";
-            this.buttonElectricPowerDoubleZones2.Name = "buttonElectricPowerDoubleZones2";
-            this.buttonElectricPowerDoubleZones2.ScreenTip = "Формула ЕЛЕКТРОЕНЕРГІЯ_ДВОХЗОННИЙ_03_17";
-            this.buttonElectricPowerDoubleZones2.ShowImage = true;
-            this.buttonElectricPowerDoubleZones2.SuperTip = "Формула, яка рахує суму за спожиту електроенергію за двозонним лічильником";
-            this.buttonElectricPowerDoubleZones2.Click += new Microsoft.Office.Tools.Ribbon.RibbonControlEventHandler(this.buttonElectricPowerDoubleZones2_Click);
+            this.buttonSubabonentTCInObjects.Image = ((System.Drawing.Image)(resources.GetObject("buttonSubabonentTCInObjects.Image")));
+            this.buttonSubabonentTCInObjects.Label = "Трансформатори струму субабонентів на об\'єктах";
+            this.buttonSubabonentTCInObjects.Name = "buttonSubabonentTCInObjects";
+            this.buttonSubabonentTCInObjects.ScreenTip = "Трансформатори струму субабонентів на об\'єктах";
+            this.buttonSubabonentTCInObjects.ShowImage = true;
+            this.buttonSubabonentTCInObjects.SuperTip = "Запит до БД, який показує інформацію по трансформаторах струму субабонентів на об" +
+                "\'єктах";
+            this.buttonSubabonentTCInObjects.Click += new Microsoft.Office.Tools.Ribbon.RibbonControlEventHandler(this.buttonSubabonentTCInObjects_Click);
             // 
             // Ribbon
             // 
@@ -656,6 +717,11 @@
         internal Microsoft.Office.Tools.Ribbon.RibbonButton buttonMotorRepairs;
         internal Microsoft.Office.Tools.Ribbon.RibbonButton buttonVersion;
         internal Microsoft.Office.Tools.Ribbon.RibbonButton buttonElectricPowerDoubleZones2;
+        internal Microsoft.Office.Tools.Ribbon.RibbonMenu menuSubabonent;
+        internal Microsoft.Office.Tools.Ribbon.RibbonButton buttonSubabonentsInObjects;
+        internal Microsoft.Office.Tools.Ribbon.RibbonButton buttonGroupByOrganization;
+        internal Microsoft.Office.Tools.Ribbon.RibbonButton buttonSubabonentMetersInObjects;
+        internal Microsoft.Office.Tools.Ribbon.RibbonButton buttonSubabonentTCInObjects;
     }
 
     partial class ThisRibbonCollection

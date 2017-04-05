@@ -158,6 +158,13 @@ namespace LTEExcelAddIn.Properties {
             }
         }
         
+        internal static System.Drawing.Bitmap subabonent {
+            get {
+                object obj = ResourceManager.GetObject("subabonent", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
         internal static System.Drawing.Bitmap tc {
             get {
                 object obj = ResourceManager.GetObject("tc", resourceCulture);

@@ -43,6 +43,7 @@ ORDER BY
         private string filterPump;
         private bool isFilterByPumpName;
         private bool isFilterByPumpArtikul;
+        private bool isFilterByPumpOldArtikul;
         private bool isFilterByRotorArtikul;
         private bool isFilterByWheelArtikul;
 
@@ -98,6 +99,19 @@ ORDER BY
             }
         }
 
+        public bool IsFilterByPumpOldArtikul
+        {
+            get { return isFilterByPumpOldArtikul; }
+            set
+            {
+                if (value != isFilterByPumpOldArtikul)
+                {
+                    isFilterByPumpOldArtikul = value;
+                    PumpsListView.Filter = FilterByPumpArtikul;
+                }
+            }
+        }
+
         public bool IsFilterByRotorArtikul
         {
             get { return isFilterByRotorArtikul; }
@@ -143,6 +157,7 @@ ORDER BY
                     PumpsList = new ObservableCollection<Pump>();
                     InitializePumpsList(reader);
                     PumpsListView = CollectionViewSource.GetDefaultView(PumpsList);
+                    IsFilterByPumpOldArtikul = true;
                     IsFilterByPumpName = true;
                 }
                 command.Dispose();
@@ -219,7 +234,14 @@ ORDER BY
             }
             else
             {
-                return pump.Artikul.ToString().StartsWith(FilterPump, true, null);
+                if (IsFilterByPumpOldArtikul)
+                {
+                    return (pump.Artikul.ToString().StartsWith(FilterPump, true, null) || pump.OldArtikul.ToString().StartsWith(FilterPump, true, null));
+                }
+                else
+                {
+                    return pump.Artikul.ToString().StartsWith(FilterPump, true, null); 
+                }
             }
         }
 

@@ -340,12 +340,10 @@ SELECT
     IF(wiloRotors.idRotor IS NOT NULL, IF(wiloRotors.typeWheel IS NULL, 'ні', 'так'), 'невідомо') AS 'ротор з крильчаткою',
     (SELECT COUNT(*) FROM wiloRotors_lte WHERE wiloRotors_lte.idRotor = wiloRotors.idRotor AND wiloRotors_lte.IsUsed = 0) AS 'на складі',
     (SELECT COUNT(*) FROM wiloRotors_lte WHERE wiloRotors_lte.idRotor = wiloRotors.idRotor AND wiloRotors_lte.IsUsed <> 0) AS 'у використанні',
-    COUNT(*) AS 'кількість двигунів'
+    COUNT(motors_lte.idMotorsLTE) AS 'кількість двигунів'
 FROM 
-    motors_lte LEFT OUTER JOIN wiloCharacteristics USING (idWiloArt) 
+    motors_lte RIGHT OUTER JOIN wiloCharacteristics USING (idWiloArt) 
         LEFT OUTER JOIN wiloRotors USING(idRotor) 
-WHERE
-    motors_lte.type REGEXP '^Wilo RS +|^Wilo Star+|^Wilo TOP-+'
 GROUP BY
     wiloRotors.idRotor,
     wiloRotors.type
@@ -408,8 +406,8 @@ SELECT
     IF(meters.connectTC, 'трансформаторне', 'пряме') AS 'ввімкнення',   
     meters_lte.numberMeter AS 'номер лічильника',   
     meters_lte.testYear AS 'рік ДП', 
-    meters_lte.testQuarter AS 'квартал ДП', 
-    meters.limit + meters_lte.testYear AS 'рік наступної ДП', 
+    meters_lte.testQuarter AS 'квартал ДП',
+    meters_lte.limitYear + meters_lte.testYear AS 'рік наступної ДП', 
     objects.organization AS 'договір з', 
     IF(meters_lte.mustTesting, 'так', 'ні') AS 'ЛТЕ проводить ДП', 
     meters_lte.page AS 'сторінка' 
@@ -418,7 +416,7 @@ FROM
         INNER JOIN objects USING(idObject) 
 ORDER BY  
     meters_lte.mustTesting, 
-    meters.limit + meters_lte.testYear, 
+    meters_lte.limitYear + meters_lte.testYear, 
     meters_lte.testQuarter, 
     objects.region, 
     objects.type, 
@@ -495,7 +493,7 @@ FROM
     (
         SELECT 
             meters_lte.idObject,
-            meters.limit + meters_lte.testYear AS 'metersYear'
+            meters_lte.limitYear + meters_lte.testYear AS 'metersYear'
         FROM 
             meters INNER JOIN meters_lte USING (idMeter)
     ) AS tableMeters 
@@ -616,6 +614,100 @@ ORDER BY
     SUBSTRING_INDEX(objects.address, ',', 1) COLLATE utf8_unicode_ci, 
     CAST(SUBSTRING_INDEX(objects.address, ',', -1) AS unsigned);
             ", buttonTSAtObjects.Label).ShowDialog();
+        }
+
+        private void buttonSubabonentsInObjects_Click(object sender, RibbonControlEventArgs e)
+        {
+            new LoadForm(@"
+SELECT
+    subabonents.name AS 'субабонент',
+    objects.region AS 'район', 
+    objects.type AS ""тип об'єкта"", 
+    objects.address AS 'адреса',
+    FORMAT(subabonents_lte.power, 2) AS 'дозволена потужність'
+FROM
+    subabonents INNER JOIN subabonents_lte USING(idSubabonents)
+        INNER JOIN objects USING(idObject)
+ORDER BY
+    subabonents.name,
+    objects.region,
+    FIELD(objects.type, 'гуртожиток', 'майстерня', 'ТК', 'ІТП', 'ТЦ', 'ТЕЦ', 'ЦТП', 'котельня') DESC,
+    objects.type,
+    SUBSTRING_INDEX(objects.address, ',', 1) COLLATE utf8_unicode_ci, 
+    CAST(SUBSTRING_INDEX(objects.address, ',', -1) AS unsigned);
+            ", buttonSubabonentsInObjects.Label).ShowDialog();
+        }
+
+        private void buttonGroupByOrganization_Click(object sender, RibbonControlEventArgs e)
+        {
+            new LoadForm(@"
+SELECT 
+    subabonents.name AS 'організація', 
+    COUNT(subabonents_lte.idSubabonentsLTE) ""кількість точок при'єднання"" 
+FROM 
+    subabonents RIGHT JOIN subabonents_lte USING(idSubabonents) 
+GROUP BY 
+    subabonents.name 
+ORDER BY 
+    `кількість точок при'єднання` DESC;
+            ", buttonGroupByOrganization.Label).ShowDialog();
+        }
+
+        private void buttonSubabonentMetersInObjects_Click(object sender, RibbonControlEventArgs e)
+        {
+            new LoadForm(@"
+SELECT
+    objects.region AS 'район', 
+    objects.type AS 'тип', 
+    objects.address AS 'адреса', 
+    subabonents.name AS 'субабонент',
+    meters.type AS 'лічильник', 
+    IF(meters.connectTC, 'трансформаторне', 'пряме') AS 'ввімкнення',
+    meters_subabonents.numberMeter AS 'номер лічильника',   
+    meters_subabonents.testYear AS 'рік ДП', 
+    meters_subabonents.testQuarter AS 'квартал ДП',
+    meters_subabonents.limitYear + meters_subabonents.testYear AS 'рік наступної ДП'
+FROM
+    subabonents INNER JOIN subabonents_lte USING(idSubabonents)
+        INNER JOIN objects USING(idObject)
+            INNER JOIN meters_subabonents USING(idSubabonentsLTE)
+                INNER JOIN meters USING(idMeter)
+ORDER BY  
+    `рік наступної ДП`,
+    meters_subabonents.testQuarter, 
+    objects.region, 
+    objects.type, 
+    SUBSTRING_INDEX(objects.address, ',', 1) COLLATE utf8_unicode_ci, 
+    CAST(SUBSTRING_INDEX(objects.address, ',', -1) AS unsigned);
+            ", buttonSubabonentMetersInObjects.Label).ShowDialog();
+        }
+
+        private void buttonSubabonentTCInObjects_Click(object sender, RibbonControlEventArgs e)
+        {
+            new LoadForm(@"
+SELECT 
+    objects.region AS 'район', 
+    objects.type AS 'тип', 
+    objects.address AS 'адреса', 
+    CONCAT_WS(' ', tc.type, tc.coefficient) AS 'ТС',
+    subabonents.name AS 'субабонент',
+    tc_subabonents.numberTC AS 'номер ТС', 
+    tc_subabonents.testYear AS 'рік ДП',
+    tc_subabonents.testQuarter AS 'квартал ДП',
+    tc.limit + tc_subabonents.testYear AS 'рік наступної ДП'
+FROM 
+    subabonents INNER JOIN subabonents_lte USING(idSubabonents)
+        INNER JOIN objects USING(idObject)
+            INNER JOIN tc_subabonents USING(idSubabonentsLTE)
+                INNER JOIN tc USING(idTC)
+ORDER BY
+    `рік наступної ДП`,
+    tc_subabonents.testQuarter, 
+    objects.region, 
+    objects.type, 
+    SUBSTRING_INDEX(objects.address, ',', 1) COLLATE utf8_unicode_ci, 
+    CAST(SUBSTRING_INDEX(objects.address, ',', -1) AS unsigned);
+            ", buttonSubabonentTCInObjects.Label).ShowDialog();
         }
 
         private void buttonEmployeesES_Click(object sender, RibbonControlEventArgs e)
