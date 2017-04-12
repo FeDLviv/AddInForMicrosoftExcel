@@ -77,6 +77,7 @@
             this.buttonSubabonentsInObjects = this.Factory.CreateRibbonButton();
             this.buttonGroupByOrganization = this.Factory.CreateRibbonButton();
             this.buttonSubabonentMetersInObjects = this.Factory.CreateRibbonButton();
+            this.buttonSubabonentTCInObjects = this.Factory.CreateRibbonButton();
             this.menuEmployees = this.Factory.CreateRibbonMenu();
             this.buttonEmployeesES = this.Factory.CreateRibbonButton();
             this.buttonWilo = this.Factory.CreateRibbonButton();
@@ -86,7 +87,6 @@
             this.buttonGas = this.Factory.CreateRibbonButton();
             this.buttonCalculation = this.Factory.CreateRibbonButton();
             this.buttonVersion = this.Factory.CreateRibbonButton();
-            this.buttonSubabonentTCInObjects = this.Factory.CreateRibbonButton();
             this.tab.SuspendLayout();
             this.groupSQL.SuspendLayout();
             this.groupFunctions.SuspendLayout();
@@ -547,6 +547,17 @@
             this.buttonSubabonentMetersInObjects.SuperTip = "Запит до БД, який показує інформацію по лічильниках субабонентів на об\'єктах";
             this.buttonSubabonentMetersInObjects.Click += new Microsoft.Office.Tools.Ribbon.RibbonControlEventHandler(this.buttonSubabonentMetersInObjects_Click);
             // 
+            // buttonSubabonentTCInObjects
+            // 
+            this.buttonSubabonentTCInObjects.Image = ((System.Drawing.Image)(resources.GetObject("buttonSubabonentTCInObjects.Image")));
+            this.buttonSubabonentTCInObjects.Label = "Трансформатори струму субабонентів на об\'єктах";
+            this.buttonSubabonentTCInObjects.Name = "buttonSubabonentTCInObjects";
+            this.buttonSubabonentTCInObjects.ScreenTip = "Трансформатори струму субабонентів на об\'єктах";
+            this.buttonSubabonentTCInObjects.ShowImage = true;
+            this.buttonSubabonentTCInObjects.SuperTip = "Запит до БД, який показує інформацію по трансформаторах струму субабонентів на об" +
+                "\'єктах";
+            this.buttonSubabonentTCInObjects.Click += new Microsoft.Office.Tools.Ribbon.RibbonControlEventHandler(this.buttonSubabonentTCInObjects_Click);
+            // 
             // menuEmployees
             // 
             this.menuEmployees.Image = global::LTEExcelAddIn.Properties.Resources.employees;
@@ -639,17 +650,6 @@
             this.buttonVersion.ShowImage = true;
             this.buttonVersion.SuperTip = "Вивід повідомлення,  в якому вказується версія програми";
             this.buttonVersion.Click += new Microsoft.Office.Tools.Ribbon.RibbonControlEventHandler(this.buttonVersion_Click);
-            // 
-            // buttonSubabonentTCInObjects
-            // 
-            this.buttonSubabonentTCInObjects.Image = ((System.Drawing.Image)(resources.GetObject("buttonSubabonentTCInObjects.Image")));
-            this.buttonSubabonentTCInObjects.Label = "Трансформатори струму субабонентів на об\'єктах";
-            this.buttonSubabonentTCInObjects.Name = "buttonSubabonentTCInObjects";
-            this.buttonSubabonentTCInObjects.ScreenTip = "Трансформатори струму субабонентів на об\'єктах";
-            this.buttonSubabonentTCInObjects.ShowImage = true;
-            this.buttonSubabonentTCInObjects.SuperTip = "Запит до БД, який показує інформацію по трансформаторах струму субабонентів на об" +
-                "\'єктах";
-            this.buttonSubabonentTCInObjects.Click += new Microsoft.Office.Tools.Ribbon.RibbonControlEventHandler(this.buttonSubabonentTCInObjects_Click);
             // 
             // Ribbon
             // 

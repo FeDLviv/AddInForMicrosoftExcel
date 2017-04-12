@@ -501,7 +501,7 @@ FROM
     (
         SELECT
             tc_lte.idObject,
-            tc.limit + tc_lte.testYear AS 'tcYear'
+            tc_lte.limitYear + tc_lte.testYear AS 'tcYear'
         FROM 
             tc INNER JOIN tc_lte USING (idTC) 
     ) AS tableTC
@@ -543,7 +543,7 @@ SELECT
     tc_lte.numberTC AS 'номер ТС', 
     tc_lte.testYear AS 'рік ДП',
     tc_lte.testQuarter AS 'квартал ДП',
-    tc.limit + tc_lte.testYear AS 'рік наступної ДП',
+    tc_lte.limitYear + tc_lte.testYear AS 'рік наступної ДП',
     objects.organization AS 'договір з', 
     IF(tc_lte.mustTesting, 'так', 'ні') AS 'ЛТЕ проводить ДП'
 FROM 
@@ -694,7 +694,7 @@ SELECT
     tc_subabonents.numberTC AS 'номер ТС', 
     tc_subabonents.testYear AS 'рік ДП',
     tc_subabonents.testQuarter AS 'квартал ДП',
-    tc.limit + tc_subabonents.testYear AS 'рік наступної ДП'
+    tc_subabonents.limitYear + tc_subabonents.testYear AS 'рік наступної ДП'
 FROM 
     subabonents INNER JOIN subabonents_lte USING(idSubabonents)
         INNER JOIN objects USING(idObject)
