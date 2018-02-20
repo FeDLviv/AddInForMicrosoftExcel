@@ -33,6 +33,6 @@ using System.Security;
 // Можно задать все значения или принять номер построения и номер редакции по умолчанию 
 // с помощью знака '*', как показано ниже:
 // [assembly: AssemblyVersion("1.0.*")]
-[assembly: AssemblyVersion("1.3.1.0")]
+[assembly: AssemblyVersion("1.4.0.0")]
 [assembly: AssemblyFileVersion("1.0.0.0")]
 

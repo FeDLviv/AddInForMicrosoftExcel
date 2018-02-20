@@ -120,6 +120,24 @@ ORDER BY
             ", buttonGroupByContracts.Label).ShowDialog();
         }
 
+        private void buttonDispatchingObjects_Click(object sender, RibbonControlEventArgs e)
+        {
+            new LoadForm(@"
+SELECT 
+    objects.region AS 'район', 
+    objects.type AS 'тип', 
+    objects.address AS 'адреса'
+FROM 
+    dispatch_objects INNER JOIN objects USING(idObject)
+ORDER BY
+    objects.region,
+    FIELD(type, 'гуртожиток', 'майстерня', 'ТК', 'ІТП', 'ЦТП', 'котельня') DESC,
+    objects.type,
+    SUBSTRING_INDEX(objects.address, ',', 1) COLLATE utf8_unicode_ci, 
+    CAST(SUBSTRING_INDEX(objects.address, ',', -1) AS unsigned);
+            ", buttonDispatchingObjects.Label).ShowDialog();
+        }
+
         private void buttonMotorsInObjects_Click(object sender, RibbonControlEventArgs e)
         {
             new LoadForm(@"
@@ -161,7 +179,7 @@ SELECT
 FROM
     motors_lte
 WHERE
-    type REGEXP '^DAB VA +|^DAB A +|^IMPPUMPS GHN +|^LFP LESZNO [0-9]{2}P+|^Lowara EV +|^Lowara TLC +|^Lowara TCR +|^Lowara TC +|^NOCCHI R2C +|Sprut GPD +|^Viessmann +|^Grundfos MAGNA +|^Grundfos UP +|^Grundfos UPBASIC +|^Grundfos UPS +|^Grundfos UPER +|^Wilo RS +|^Wilo Star+|^Wilo TOP-+'
+    type REGEXP '^DAB VA +|^DAB A +|^DAB BPH +|^IMPPUMPS GHN +|^LFP LESZNO [0-9]{2}P+|^Lowara EV +|^Lowara TLC +|^Lowara TCR +|^Lowara TC +|^NOCCHI R2C +|Sprut GPD +|^Viessmann +|^Grundfos MAGNA +|^Grundfos UP +|^Grundfos UPBASIC +|^Grundfos UPS +|^Grundfos UPC +|^Grundfos UPER +|^Wilo RS +|^Wilo Star+|^Wilo TOP-+|^Wilo Stratos +'
 GROUP BY
     type
 ORDER BY
@@ -305,7 +323,7 @@ FROM
     objects INNER JOIN motors_lte USING (idObject) 
         INNER JOIN missions USING (idMission)
 WHERE
-    motors_lte.type REGEXP '^Wilo RS +|^Wilo Star+|^Wilo TOP-+'
+    motors_lte.type REGEXP '^Wilo RS +|^Wilo Star+|^Wilo TOP-+|^Wilo Stratos +'
 ORDER BY 
     objects.region,     
     SUBSTRING_INDEX(objects.address, ',', 1) COLLATE utf8_unicode_ci,   
@@ -322,7 +340,7 @@ SELECT
 FROM
     motors_lte
 WHERE
-    type REGEXP '^Wilo RS +|^Wilo Star+|^Wilo TOP-+'
+    type REGEXP '^Wilo RS +|^Wilo Star+|^Wilo TOP-+|^Wilo Stratos +'
 GROUP BY
     type
 ORDER BY
@@ -578,6 +596,65 @@ ORDER BY
             ", buttonTCHistory.Label).ShowDialog();
         }
 
+        private void buttonControllersInObjetcs_Click(object sender, RibbonControlEventArgs e)
+        {
+                        new LoadForm(@"
+SELECT
+    objects.region AS 'район',
+    objects.type AS 'тип',
+    objects.address AS 'адреса',
+    CONCAT_WS(' ', controllers_lte.seriesController, controllers_lte.typeController) AS 'частотник',
+    FORMAT(controllers_lte.power, 2) AS 'кВт',
+    controllers_lte.notes AS 'примітки',
+    DATE_FORMAT(controllers_lte.dateUpdate , '%d.%m.%Y %T') AS 'дата зміни інформації'
+FROM
+    controllers_lte INNER JOIN objects USING(idObject)
+ORDER BY
+    objects.region,
+    FIELD(objects.type, 'ІТП', 'ЦТП', 'котельня') DESC, 
+    objects.type, 
+    SUBSTRING_INDEX(objects.address, ',', 1) COLLATE utf8_unicode_ci, 
+    CAST(SUBSTRING_INDEX(objects.address, ',', -1) AS unsigned);
+            ", buttonControllersInObjetcs.Label).ShowDialog();
+        }
+
+        private void buttonGroupControllersByObjects_Click(object sender, RibbonControlEventArgs e)
+        {
+            new LoadForm(@"
+SELECT
+    objects.region AS 'район',
+    objects.type AS 'тип',
+    objects.address AS 'адреса',
+    COUNT(controllers_lte.idControllerLTE) AS 'кількість'
+FROM
+    controllers_lte INNER JOIN objects USING(idObject)
+GROUP BY
+    controllers_lte.idObject
+ORDER BY
+    objects.region,
+    FIELD(objects.type, 'ІТП', 'ЦТП', 'котельня') DESC, 
+    objects.type, 
+    SUBSTRING_INDEX(objects.address, ',', 1) COLLATE utf8_unicode_ci, 
+    CAST(SUBSTRING_INDEX(objects.address, ',', -1) AS unsigned);
+            ", buttonGroupControllersByObjects.Label).ShowDialog();
+        }
+
+        private void buttonGroupControllersBySeries_Click(object sender, RibbonControlEventArgs e)
+        {
+            new LoadForm(@"
+SELECT
+    controllers_lte.seriesController AS 'тип',
+    COUNT(*) AS 'кількість'
+FROM
+    controllers_lte
+GROUP BY
+    seriesController
+ORDER BY
+    кількість DESC,
+    тип;
+            ", buttonGroupControllersBySeries.Label).ShowDialog();
+        }
+
         private void buttonCondensersInObjects_Click(object sender, RibbonControlEventArgs e)
         {
             new LoadForm(@"
@@ -754,5 +831,6 @@ ORDER BY
         {
             insertHomeFunction("ГАЗ_05_16");
         }
+
     }
 }

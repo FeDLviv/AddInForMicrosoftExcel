@@ -88,9 +88,23 @@ namespace LTEExcelAddIn.Properties {
             }
         }
         
+        internal static System.Drawing.Bitmap dispatching {
+            get {
+                object obj = ResourceManager.GetObject("dispatching", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
         internal static System.Drawing.Bitmap employees {
             get {
                 object obj = ResourceManager.GetObject("employees", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        internal static System.Drawing.Bitmap frequency {
+            get {
+                object obj = ResourceManager.GetObject("frequency", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

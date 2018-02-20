@@ -44,6 +44,8 @@
             this.menuContracts = this.Factory.CreateRibbonMenu();
             this.buttonContractsInformation = this.Factory.CreateRibbonButton();
             this.buttonGroupByContracts = this.Factory.CreateRibbonButton();
+            this.menuDispatching = this.Factory.CreateRibbonMenu();
+            this.buttonDispatchingObjects = this.Factory.CreateRibbonButton();
             this.menuMotors = this.Factory.CreateRibbonMenu();
             this.buttonMotorsInObjects = this.Factory.CreateRibbonButton();
             this.buttonGroupByMiniMotors = this.Factory.CreateRibbonButton();
@@ -69,6 +71,10 @@
             this.buttonTCInObjects = this.Factory.CreateRibbonButton();
             this.buttonTCHistory = this.Factory.CreateRibbonButton();
             this.buttonJointInspection2 = this.Factory.CreateRibbonButton();
+            this.menuControllers = this.Factory.CreateRibbonMenu();
+            this.buttonControllersInObjetcs = this.Factory.CreateRibbonButton();
+            this.buttonGroupControllersByObjects = this.Factory.CreateRibbonButton();
+            this.buttonGroupControllersBySeries = this.Factory.CreateRibbonButton();
             this.menuCondensers = this.Factory.CreateRibbonMenu();
             this.buttonCondensersInObjects = this.Factory.CreateRibbonButton();
             this.menuTS = this.Factory.CreateRibbonMenu();
@@ -106,10 +112,12 @@
             this.groupSQL.Items.Add(this.buttonSQLSettings);
             this.groupSQL.Items.Add(this.buttonSQLQuery);
             this.groupSQL.Items.Add(this.menuContracts);
+            this.groupSQL.Items.Add(this.menuDispatching);
             this.groupSQL.Items.Add(this.menuMotors);
             this.groupSQL.Items.Add(this.menuWilo);
             this.groupSQL.Items.Add(this.menuMeters);
             this.groupSQL.Items.Add(this.menuTC);
+            this.groupSQL.Items.Add(this.menuControllers);
             this.groupSQL.Items.Add(this.menuCondensers);
             this.groupSQL.Items.Add(this.menuTS);
             this.groupSQL.Items.Add(this.menuSubabonent);
@@ -184,6 +192,26 @@
             this.buttonGroupByContracts.SuperTip = "Запит до БД, який групує об\'єкти по договорах  та підраховує їх кількість";
             this.buttonGroupByContracts.Click += new Microsoft.Office.Tools.Ribbon.RibbonControlEventHandler(this.buttonGroupByContracts_Click);
             // 
+            // menuDispatching
+            // 
+            this.menuDispatching.Image = global::LTEExcelAddIn.Properties.Resources.dispatching;
+            this.menuDispatching.Items.Add(this.buttonDispatchingObjects);
+            this.menuDispatching.Label = "Диспетчеризація";
+            this.menuDispatching.Name = "menuDispatching";
+            this.menuDispatching.ScreenTip = "Диспетчеризація";
+            this.menuDispatching.ShowImage = true;
+            this.menuDispatching.SuperTip = "Запити до БД, щодо об\'єктів, які підлягають диспетчеризації";
+            // 
+            // buttonDispatchingObjects
+            // 
+            this.buttonDispatchingObjects.Image = ((System.Drawing.Image)(resources.GetObject("buttonDispatchingObjects.Image")));
+            this.buttonDispatchingObjects.Label = "Об\'єкти, які підлягають диспетчеризації";
+            this.buttonDispatchingObjects.Name = "buttonDispatchingObjects";
+            this.buttonDispatchingObjects.ScreenTip = "Об\'єкти, які підлягають диспетчеризації";
+            this.buttonDispatchingObjects.ShowImage = true;
+            this.buttonDispatchingObjects.SuperTip = "Запит до БД, який показує перелік об\'єктів, які підлягають диспетчеризації";
+            this.buttonDispatchingObjects.Click += new Microsoft.Office.Tools.Ribbon.RibbonControlEventHandler(this.buttonDispatchingObjects_Click);
+            // 
             // menuMotors
             // 
             this.menuMotors.Image = ((System.Drawing.Image)(resources.GetObject("menuMotors.Image")));
@@ -218,7 +246,7 @@
             this.buttonGroupByMiniMotors.ScreenTip = "Згруповані двигуни з мокрим ротором";
             this.buttonGroupByMiniMotors.ShowImage = true;
             this.buttonGroupByMiniMotors.SuperTip = "Запит до БД, який вибирає двигуни  з мокрим ротором та групує їх по типу ЗАПИТ ПО" +
-                "ТРІБНО ПОНОВЛЮВАТИ (24.12.2016)";
+                "ТРІБНО ПОНОВЛЮВАТИ (20.02.2018)";
             this.buttonGroupByMiniMotors.Click += new Microsoft.Office.Tools.Ribbon.RibbonControlEventHandler(this.buttonGroupByMiniMotors_Click);
             // 
             // buttonGroupByPower
@@ -295,7 +323,7 @@
             this.buttonMiniWiloMotors.ScreenTip = "Двигуни Wilo з мокрим ротором";
             this.buttonMiniWiloMotors.ShowImage = true;
             this.buttonMiniWiloMotors.SuperTip = "Запит до БД, який вибирає двигуни Wilo  з мокрим ротором ЗАПИТ ПОТРІБНО ПОНОВЛЮВА" +
-                "ТИ (24.12.2016)";
+                "ТИ (20.02.2018)";
             this.buttonMiniWiloMotors.Click += new Microsoft.Office.Tools.Ribbon.RibbonControlEventHandler(this.buttonMiniWiloMotors_Click);
             // 
             // buttonGroupByMiniWiloMotors
@@ -306,7 +334,7 @@
             this.buttonGroupByMiniWiloMotors.ScreenTip = "Згруповані двигуни Wilo з мокрим ротором";
             this.buttonGroupByMiniWiloMotors.ShowImage = true;
             this.buttonGroupByMiniWiloMotors.SuperTip = "Запит до БД, який вибирає двигуни  Wilo з мокрим ротором та групує їх по типу ЗАП" +
-                "ИТ ПОТРІБНО ПОНОВЛЮВАТИ (24.12.2016)";
+                "ИТ ПОТРІБНО ПОНОВЛЮВАТИ (20.02.2018)";
             this.buttonGroupByMiniWiloMotors.Click += new Microsoft.Office.Tools.Ribbon.RibbonControlEventHandler(this.buttonGroupByMiniWiloMotors_Click);
             // 
             // buttonGroupByRotorsMiniWiloMotor
@@ -462,6 +490,48 @@
             this.buttonJointInspection2.SuperTip = "Запит до БД, який показує об\'єкти, на яких, рік держповірки лічильника(ів) та тра" +
                 "нсформатора(ів) струму збігається";
             this.buttonJointInspection2.Click += new Microsoft.Office.Tools.Ribbon.RibbonControlEventHandler(this.buttonJointInspection_Click);
+            // 
+            // menuControllers
+            // 
+            this.menuControllers.Image = global::LTEExcelAddIn.Properties.Resources.frequency;
+            this.menuControllers.Items.Add(this.buttonControllersInObjetcs);
+            this.menuControllers.Items.Add(this.buttonGroupControllersByObjects);
+            this.menuControllers.Items.Add(this.buttonGroupControllersBySeries);
+            this.menuControllers.Label = "Частотники";
+            this.menuControllers.Name = "menuControllers";
+            this.menuControllers.ScreenTip = "Частотники";
+            this.menuControllers.ShowImage = true;
+            this.menuControllers.SuperTip = "Запити до БД, щодо частотних перетворювачів";
+            // 
+            // buttonControllersInObjetcs
+            // 
+            this.buttonControllersInObjetcs.Image = ((System.Drawing.Image)(resources.GetObject("buttonControllersInObjetcs.Image")));
+            this.buttonControllersInObjetcs.Label = "Частотники на об\'єктах";
+            this.buttonControllersInObjetcs.Name = "buttonControllersInObjetcs";
+            this.buttonControllersInObjetcs.ScreenTip = "Частотники на об\'єктах";
+            this.buttonControllersInObjetcs.ShowImage = true;
+            this.buttonControllersInObjetcs.SuperTip = "Запит до БД, який показує інформацію по частотниках на об\'єктах";
+            this.buttonControllersInObjetcs.Click += new Microsoft.Office.Tools.Ribbon.RibbonControlEventHandler(this.buttonControllersInObjetcs_Click);
+            // 
+            // buttonGroupControllersByObjects
+            // 
+            this.buttonGroupControllersByObjects.Image = ((System.Drawing.Image)(resources.GetObject("buttonGroupControllersByObjects.Image")));
+            this.buttonGroupControllersByObjects.Label = "Частотники згруповані по об\'єктах";
+            this.buttonGroupControllersByObjects.Name = "buttonGroupControllersByObjects";
+            this.buttonGroupControllersByObjects.ScreenTip = "Частотники згруповані по об\'єктах";
+            this.buttonGroupControllersByObjects.ShowImage = true;
+            this.buttonGroupControllersByObjects.SuperTip = "Запит до БД, який показує об\'єкти з частотниками та їх кількість";
+            this.buttonGroupControllersByObjects.Click += new Microsoft.Office.Tools.Ribbon.RibbonControlEventHandler(this.buttonGroupControllersByObjects_Click);
+            // 
+            // buttonGroupControllersBySeries
+            // 
+            this.buttonGroupControllersBySeries.Image = ((System.Drawing.Image)(resources.GetObject("buttonGroupControllersBySeries.Image")));
+            this.buttonGroupControllersBySeries.Label = "Частотники згруповані по виробнику";
+            this.buttonGroupControllersBySeries.Name = "buttonGroupControllersBySeries";
+            this.buttonGroupControllersBySeries.ScreenTip = "Частотники згруповані по виробнику";
+            this.buttonGroupControllersBySeries.ShowImage = true;
+            this.buttonGroupControllersBySeries.SuperTip = "Запит до БД, який вибирає частотникик на об\'єктах та групує їх по виробнику";
+            this.buttonGroupControllersBySeries.Click += new Microsoft.Office.Tools.Ribbon.RibbonControlEventHandler(this.buttonGroupControllersBySeries_Click);
             // 
             // menuCondensers
             // 
@@ -722,6 +792,12 @@
         internal Microsoft.Office.Tools.Ribbon.RibbonButton buttonGroupByOrganization;
         internal Microsoft.Office.Tools.Ribbon.RibbonButton buttonSubabonentMetersInObjects;
         internal Microsoft.Office.Tools.Ribbon.RibbonButton buttonSubabonentTCInObjects;
+        internal Microsoft.Office.Tools.Ribbon.RibbonMenu menuControllers;
+        internal Microsoft.Office.Tools.Ribbon.RibbonButton buttonControllersInObjetcs;
+        internal Microsoft.Office.Tools.Ribbon.RibbonButton buttonGroupControllersBySeries;
+        internal Microsoft.Office.Tools.Ribbon.RibbonButton buttonGroupControllersByObjects;
+        internal Microsoft.Office.Tools.Ribbon.RibbonMenu menuDispatching;
+        internal Microsoft.Office.Tools.Ribbon.RibbonButton buttonDispatchingObjects;
     }
 
     partial class ThisRibbonCollection

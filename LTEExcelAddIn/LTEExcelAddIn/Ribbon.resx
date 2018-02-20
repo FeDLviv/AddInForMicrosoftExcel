@@ -412,6 +412,19 @@
         RK5CYII=
 </value>
   </data>
+  <data name="buttonDispatchingObjects.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
+        YQUAAAAgY0hSTQAAeiYAAICEAAD6AAAAgOgAAHUwAADqYAAAOpgAABdwnLpRPAAAAWNJREFUOE9j/P//
+        PwMx4G5prQAzJ1uBlM7ferawBka4HpABhLClpaWAhYXF+Zut3f8ftbc3IKsnqPn/f3uB50+iz2ekp/+P
+        dHY8f6ekRoAEA+wF/v+JOv/3jt3/GensbyLdbFA0g72P2/kIzYtzGd483MmAoRmPAcRpBhsgb1aaGFW6
+        9j8Ig9ggP799E/MQ5Oy5eTz/Q3Nn/ndxLJ0JUuyWOOcnCKOEAZJms4ji1f//XS978/eaHljzw10MAj4Z
+        i/97J835R4wBDH9fX3/9+9nR/3NyITYDXcRgEz7tv0fEBLABNmGT3oMwigtgXsipX/3/4vzmr7tLQxtC
+        suf/B9kMMkDPo+O/hmMD3DCQgSBxEIaFATgcYovm/Y/InApXCNIIVQii4YYhiaMYADIErpBINtwAkEYz
+        HJpghmK4BtkLiUiaQWywl5DEwNGL5h2wwchhAA4UHBhmGIY8gaRMOJeCDAAAPN0auasUSC4AAAAASUVO
+        RK5CYII=
+</value>
+  </data>
   <data name="menuMotors.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
@@ -712,6 +725,45 @@
 </value>
   </data>
   <data name="buttonJointInspection2.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
+        YQUAAAAgY0hSTQAAeiYAAICEAAD6AAAAgOgAAHUwAADqYAAAOpgAABdwnLpRPAAAAWNJREFUOE9j/P//
+        PwMx4G5prQAzJ1uBlM7ferawBka4HpABhLClpaWAhYXF+Zut3f8ftbc3IKsnqPn/f3uB50+iz2ekp/+P
+        dHY8f6ekRoAEA+wF/v+JOv/3jt3/GensbyLdbFA0g72P2/kIzYtzGd483MmAoRmPAcRpBhsgb1aaGFW6
+        9j8Ig9ggP799E/MQ5Oy5eTz/Q3Nn/ndxLJ0JUuyWOOcnCKOEAZJms4ji1f//XS978/eaHljzw10MAj4Z
+        i/97J835R4wBDH9fX3/9+9nR/3NyITYDXcRgEz7tv0fEBLABNmGT3oMwigtgXsipX/3/4vzmr7tLQxtC
+        suf/B9kMMkDPo+O/hmMD3DCQgSBxEIaFATgcYovm/Y/InApXCNIIVQii4YYhiaMYADIErpBINtwAkEYz
+        HJpghmK4BtkLiUiaQWywl5DEwNGL5h2wwchhAA4UHBhmGIY8gaRMOJeCDAAAPN0auasUSC4AAAAASUVO
+        RK5CYII=
+</value>
+  </data>
+  <data name="buttonControllersInObjetcs.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
+        YQUAAAAgY0hSTQAAeiYAAICEAAD6AAAAgOgAAHUwAADqYAAAOpgAABdwnLpRPAAAAWNJREFUOE9j/P//
+        PwMx4G5prQAzJ1uBlM7ferawBka4HpABhLClpaWAhYXF+Zut3f8ftbc3IKsnqPn/f3uB50+iz2ekp/+P
+        dHY8f6ekRoAEA+wF/v+JOv/3jt3/GensbyLdbFA0g72P2/kIzYtzGd483MmAoRmPAcRpBhsgb1aaGFW6
+        9j8Ig9ggP799E/MQ5Oy5eTz/Q3Nn/ndxLJ0JUuyWOOcnCKOEAZJms4ji1f//XS978/eaHljzw10MAj4Z
+        i/97J835R4wBDH9fX3/9+9nR/3NyITYDXcRgEz7tv0fEBLABNmGT3oMwigtgXsipX/3/4vzmr7tLQxtC
+        suf/B9kMMkDPo+O/hmMD3DCQgSBxEIaFATgcYovm/Y/InApXCNIIVQii4YYhiaMYADIErpBINtwAkEYz
+        HJpghmK4BtkLiUiaQWywl5DEwNGL5h2wwchhAA4UHBhmGIY8gaRMOJeCDAAAPN0auasUSC4AAAAASUVO
+        RK5CYII=
+</value>
+  </data>
+  <data name="buttonGroupControllersByObjects.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
+        YQUAAAAgY0hSTQAAeiYAAICEAAD6AAAAgOgAAHUwAADqYAAAOpgAABdwnLpRPAAAAWNJREFUOE9j/P//
+        PwMx4G5prQAzJ1uBlM7ferawBka4HpABhLClpaWAhYXF+Zut3f8ftbc3IKsnqPn/f3uB50+iz2ekp/+P
+        dHY8f6ekRoAEA+wF/v+JOv/3jt3/GensbyLdbFA0g72P2/kIzYtzGd483MmAoRmPAcRpBhsgb1aaGFW6
+        9j8Ig9ggP799E/MQ5Oy5eTz/Q3Nn/ndxLJ0JUuyWOOcnCKOEAZJms4ji1f//XS978/eaHljzw10MAj4Z
+        i/97J835R4wBDH9fX3/9+9nR/3NyITYDXcRgEz7tv0fEBLABNmGT3oMwigtgXsipX/3/4vzmr7tLQxtC
+        suf/B9kMMkDPo+O/hmMD3DCQgSBxEIaFATgcYovm/Y/InApXCNIIVQii4YYhiaMYADIErpBINtwAkEYz
+        HJpghmK4BtkLiUiaQWywl5DEwNGL5h2wwchhAA4UHBhmGIY8gaRMOJeCDAAAPN0auasUSC4AAAAASUVO
+        RK5CYII=
+</value>
+  </data>
+  <data name="buttonGroupControllersBySeries.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
         YQUAAAAgY0hSTQAAeiYAAICEAAD6AAAAgOgAAHUwAADqYAAAOpgAABdwnLpRPAAAAWNJREFUOE9j/P//
